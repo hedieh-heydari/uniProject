@@ -17,7 +17,7 @@ const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
          {
             isShow: true,
             name: 'dashboard',
-            path: '/dashboard',
+            path: '/',
             title: 'داشبورد',
             icon: <></>
          },
