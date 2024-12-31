@@ -4,6 +4,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import FilledArrowIcon from '../../assets/icons/FilledArrowIcon';
 import StyledArrow from '../../assets/icons/StyledArrow';
 import Logo from '../../assets/icons/Logo';
+import DebitCardIcon from '../../assets/icons/DebitCardIcon';
+import UserIcon from '../../assets/icons/UserIcon';
+import LogoutIcon from '../../assets/icons/LogoutIcon';
+import WalletImportIcon from '../../assets/icons/WalletImportIcon';
+import WalletExportIcon from '../../assets/icons/WalletExportIcon';
 
 const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
    const navigate = useNavigate();
@@ -19,35 +24,35 @@ const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
             name: 'dashboard',
             path: '/',
             title: 'داشبورد',
-            icon: <></>
+            icon: <DebitCardIcon className='w-6 h-6'/>
          },
          {
             isShow: true,
             name: 'deposit',
             path: '/deposit',
             title: 'درآمد',
-            icon: <></>
+            icon: <WalletImportIcon className='w-6 h-6'/>
          },
          {
             isShow: true,
             name: 'withdrawal',
             path: '/withdrawal',
             title: 'هزینه',
-            icon: <></>
+            icon: <WalletExportIcon className='w-6 h-6'/>
          },
          {
             isShow: true,
             name: 'profile',
             path: '/profile',
             title: 'پروفایل',
-            icon: <></>
+            icon: <UserIcon className='w-6 h-6'/>
          },
          {
             isShow: true,
             name: 'logout',
             path: '/logout',
             title: 'خروج',
-            icon: <></>
+            icon: <LogoutIcon className='w-6 h-6'/>
          }
       ];
 
@@ -145,7 +150,7 @@ const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
                               <Link
                                  className={`w-full flex items-center font-bold ${
                                     isActive
-                                       ? 'text-blue-900 '
+                                       ? 'text-blue-900'
                                        : 'text-gray-600'
                                  }
                 ${open ? 'justify-start' : 'justify-center'}
@@ -153,7 +158,7 @@ const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
                                  to={route.path}
                               >
                                  <p className="flex items-center justify-center">
-                                    <span className={`${open ? '' : '-mr-2 '}`}>
+                                    <span className={`${open ? '' : '-mr-2 '} ${isActive ? 'text-blue-400' : 'text-gray-600'}`}>
                                        {route.icon}
                                     </span>
                                     {open && (
@@ -175,7 +180,7 @@ const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
                            >
                               <div
                                  className={`w-full flex flex-row pr-2 py-2  rounded-14 
-                      ${route.isOpen ? 'bg-blue-400 text-blue-900' : ''}
+                      ${route.isOpen ? 'bg-blue-400 text-blue-800' : ''}
                       `}
                                  onClick={() => {
                                     handleCategoryClick(index);
