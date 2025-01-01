@@ -1,7 +1,6 @@
 import {
    Button,
    Card,
-   CardBody,
    CardHeader,
    Dropdown,
    DropdownItem,
@@ -15,16 +14,25 @@ import {
    TableHeader,
    TableRow
 } from '@nextui-org/react';
-import ElipsisIcon from '../../assets/icons/ElipsisIcon';
-import TrashIcon from '../../assets/icons/TrashIcon';
-import EditIcon from '../../assets/icons/EditIcon';
-import PlusIcon from '../../assets/icons/PlusIcon';
-import WalletImportIcon from '../../assets/icons/WalletImportIcon';
+import ElipsisIcon from '../../../assets/icons/ElipsisIcon';
+import TrashIcon from '../../../assets/icons/TrashIcon';
+import EditIcon from '../../../assets/icons/EditIcon';
+import PlusIcon from '../../../assets/icons/PlusIcon';
+import WalletImportIcon from '../../../assets/icons/WalletImportIcon';
+import { useDeposit } from '../hooks/useDeposit';
+import DeleteDepositeModal from './DeleteDepositeModal';
 
 const DepositIndex = () => {
+   const {
+      openDeleteDepositModal,
+      openUpsertDepositModal,
+      setOpenDeleteDpositModal,
+      setOpenUpserDepositModal
+   } = useDeposit();
+
    return (
       <Card className="px-4 py-6 my-6 overflow-visible">
-         <CardHeader className="flex max-sm:flex-wrap justify-between p-0 mb-6 text-asiatech-gray-800">
+         <CardHeader className="flex max-sm:flex-wrap justify-between p-0 mb-6 text-gray-700">
             <div className="flex items-center max-sm:w-full max-sm:mb-2">
                <WalletImportIcon className="w-6 h-6 ml-2" />
                <span className="font-extrabold text-base whitespace-nowrap max-sm:text-sm">
@@ -34,7 +42,9 @@ const DepositIndex = () => {
             <Button
                color="primary"
                className="h-12 max-sm:w-full"
-               onClick={() => {}}
+               onClick={() => {
+                  setOpenUpserDepositModal(true);
+               }}
             >
                <PlusIcon className="w-4 h-4" />
                <span>افزودن درآمد</span>
@@ -86,7 +96,8 @@ const DepositIndex = () => {
                      <Dropdown
                         placement="bottom-start"
                         aria-labelledby="option button"
-                                          >
+                        className="!min-w-[130px] font-IranYekan"
+                     >
                         <DropdownTrigger onClick={() => {}}>
                            <div>
                               <ElipsisIcon className="w-6 h-6" />
@@ -96,13 +107,23 @@ const DepositIndex = () => {
                            aria-label="Static Actions"
                            className=" text-gray-600"
                         >
-                           <DropdownItem key="edit" onClick={() => {}}>
+                           <DropdownItem
+                              key="edit"
+                              onClick={() => {
+                                 setOpenUpserDepositModal(true);
+                              }}
+                           >
                               <div className="flex items-center">
                                  <EditIcon className="w-4 h-4 ml-2" />
                                  <span> ویرایش </span>
                               </div>
                            </DropdownItem>
-                           <DropdownItem key="new" onClick={() => {}}>
+                           <DropdownItem
+                              key="new"
+                              onClick={() => {
+                                 setOpenDeleteDpositModal(true);
+                              }}
+                           >
                               <div className="flex items-center">
                                  <TrashIcon className="w-4 h-4 ml-2 text-gray-600" />
                                  <span>حذف </span>
@@ -114,6 +135,11 @@ const DepositIndex = () => {
                </TableRow>
             </TableBody>
          </Table>
+
+         <DeleteDepositeModal
+            open={openDeleteDepositModal}
+            setOpen={setOpenDeleteDpositModal}
+         />
       </Card>
    );
 };
