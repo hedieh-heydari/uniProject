@@ -17,7 +17,7 @@ const DeleteDepositeModal: FC<IDeleteDepositModal> = ({ open, setOpen }) => {
          hideCloseButton={true}
          size="md"
          placement="center"
-         className="max-sm:mx-4 font-IranYekanNumber"
+         className="max-sm:mx-4"
          scrollBehavior="inside"
       >
          <ModalContent>

@@ -22,3 +22,16 @@
    src: url('./assets/font/IRANYekanBold.ttf');
    font-display: fallback;
 }
+
+body {
+   font-family: IranYekanNumber;
+}
+.customised-select
+   .data-\[open\=true\]\:border-default-foreground[data-open='true'] {
+   border-color: #d6dde3 !important;
+}
+
+.customised-select
+   .data-\[focus\=true\]\:border-default-foreground[data-focus='true'] {
+   border-color: #d6dde3 !important;
+}

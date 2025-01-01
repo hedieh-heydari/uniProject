@@ -21,6 +21,7 @@ import PlusIcon from '../../../assets/icons/PlusIcon';
 import WalletImportIcon from '../../../assets/icons/WalletImportIcon';
 import { useDeposit } from '../hooks/useDeposit';
 import DeleteDepositeModal from './DeleteDepositeModal';
+import UpsertDepositModal from './UpsertDepositModal';
 
 const DepositIndex = () => {
    const {
@@ -139,6 +140,10 @@ const DepositIndex = () => {
          <DeleteDepositeModal
             open={openDeleteDepositModal}
             setOpen={setOpenDeleteDpositModal}
+         />
+         <UpsertDepositModal
+            open={openUpsertDepositModal}
+            setOpen={setOpenUpserDepositModal}
          />
       </Card>
    );
