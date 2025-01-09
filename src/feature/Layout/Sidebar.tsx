@@ -9,6 +9,7 @@ import UserIcon from '../../assets/icons/UserIcon';
 import LogoutIcon from '../../assets/icons/LogoutIcon';
 import WalletImportIcon from '../../assets/icons/WalletImportIcon';
 import WalletExportIcon from '../../assets/icons/WalletExportIcon';
+import CardExchangeIcon from '../../assets/icons/CardExchangeIcon';
 
 const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
    const navigate = useNavigate();
@@ -25,6 +26,13 @@ const Sidebar: FC<ISidebar> = ({ open, setOpen }) => {
             path: '/',
             title: 'داشبورد',
             icon: <DebitCardIcon className='w-6 h-6'/>
+         },
+         {
+            isShow: true,
+            name: 'accounts',
+            path: '/category',
+            title: 'دسته‌بندی‌ها',
+            icon: <CardExchangeIcon className='w-6 h-6'/>
          },
          {
             isShow: true,
