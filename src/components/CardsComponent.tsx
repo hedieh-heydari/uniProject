@@ -3,7 +3,7 @@ import EditIcon from '../assets/icons/EditIcon';
 import { ICardsComponent } from './CardsComponetInterface';
 
 const CardsComponent: FC<ICardsComponent> = ({
-   EditFunction,
+   editFunction,
    amount,
    categoryName,
    icon
@@ -17,7 +17,7 @@ const CardsComponent: FC<ICardsComponent> = ({
             <p
                className="flex items-center text-green-900 mb-4 cursor-pointer"
                onClick={(e:any) => {
-                  EditFunction && EditFunction(e);
+                  editFunction && editFunction(e);
                }}
             >
                <EditIcon className="w-3 h-3 ml-2" />

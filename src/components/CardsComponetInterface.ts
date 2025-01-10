@@ -4,7 +4,7 @@ export interface ICardsComponent {
    categoryName: string;
    amount?: ReactNode;
    icon: ReactNode;
-   EditFunction?: React.MouseEventHandler<
+   editFunction?: React.MouseEventHandler<
       HTMLButtonElement | HTMLAnchorElement
    >;
 }

@@ -36,17 +36,7 @@ const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
                         dir="ltr"
                         className="w-full h-10 border rounded-medium focus:outline-none px-3"
                         thousandSeparator={true}
-                        onValueChange={
-                           //    (values) => {
-                           //   const { value } = values;
-                           //   setGiftCardAdvancedSearchData({
-                           //      ...giftCardAdvancedSearchData,
-                           //      amount: value
-                           //   });
-                           //    }
-                           () => {}
-                        }
-                        //    value={giftCardAdvancedSearchData.amount}
+                        onValueChange={() => {}}
                         value={''}
                      />
                   </div>
