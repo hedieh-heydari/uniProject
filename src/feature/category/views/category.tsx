@@ -26,10 +26,10 @@ const CategoryIndex = () => {
                      aria-label="Options"
                      classNames={{
                         panel: '!px-0',
-                        tabList: 'bg-green-600 text-white w-full',
-                        tabContent: 'text-white group-data-[selected=true]:text-black',
-                        cursor: 'bg-blue-800',
-                        base: 'overflow-auto lg:w-5/12 '
+                        tabList: 'bg-green-800 text-white w-full',
+                        tabContent: 'text-white group-data-[selected=true]:text-black ',
+                        cursor: '!bg-green-100',
+                        base: 'overflow-auto lg:w-4/12 ',
                      }}
                      onSelectionChange={(e: any) => {
                         setSelectedTab(e);

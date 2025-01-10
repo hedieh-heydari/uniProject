@@ -41,8 +41,7 @@ const DepositIndex = () => {
                </span>
             </div>
             <Button
-               color="primary"
-               className="h-12 max-sm:w-full"
+               className="h-12 max-sm:w-full bg-green-900 text-green-100"
                onClick={() => {
                   setOpenUpserDepositModal(true);
                }}

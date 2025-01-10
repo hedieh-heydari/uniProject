@@ -103,8 +103,7 @@ const UpsertWithdrawalModal: FC<IUpsertWithdrawalModal> = ({
                   <Button
                      onClick={() => {}}
                      type="submit"
-                     color="primary"
-                     className={`max-sm:w-full`}
+                     className={`max-sm:w-full text-green-100 bg-green-900`}
                   >
                      ثبت
                   </Button>

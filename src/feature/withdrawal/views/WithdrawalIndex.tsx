@@ -1,7 +1,6 @@
 import {
    Button,
    Card,
-   CardBody,
    CardHeader,
    Dropdown,
    DropdownItem,
@@ -41,8 +40,7 @@ const WithdrawalIndex = () => {
                </span>
             </div>
             <Button
-               color="primary"
-               className="h-12 max-sm:w-full"
+               className="h-12 max-sm:w-full text-green-100 bg-green-900"
                onClick={() => {
                   setOpenUpsertWithdrawalModal(true);
                }}

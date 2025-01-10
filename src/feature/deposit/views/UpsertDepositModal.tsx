@@ -110,8 +110,7 @@ const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
                   <Button
                      onClick={() => {}}
                      type="submit"
-                     color="primary"
-                     className={`max-sm:w-full`}
+                     className={`max-sm:w-full bg-green-900 text-green-100`}
                   >
                      ثبت
                   </Button>
