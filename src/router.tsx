@@ -3,7 +3,7 @@ import App from './App';
 import DashboardIndex from './feature/dashboard/DashboardIndex';
 import ProfileIndex from './feature/profile/profileIndex';
 import LoginIndex from './feature/login/views/LoginIndex';
-import SignupIndex from './feature/signup/SignupIndex';
+import SignupIndex from './feature/signup/views/SignupIndex';
 import WithdrawalIndex from './feature/withdrawal/views/WithdrawalIndex';
 import DepositIndex from './feature/deposit/views/DepositIndex';
 import CategoryIndex from './feature/category/views/category';
