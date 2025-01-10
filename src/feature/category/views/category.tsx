@@ -1,60 +1,55 @@
 import { Card, CardBody, CardHeader, Tab, Tabs } from '@nextui-org/react';
-import WalletImportIcon from '../../../assets/icons/WalletImportIcon';
+import CardExchangeIcon from '../../../assets/icons/CardExchangeIcon';
+import IncomeCategory from './IncomeCategory';
+import OutgoCategory from './OutgoCategory';
+import BoxesCategory from './BoxesCategory';
+import { useState } from 'react';
 
 const CategoryIndex = () => {
+   const [selectedTab, setSelectedTab] = useState<string>('import');
    return (
       <>
          <Card className="px-4 py-6 my-6 overflow-visible">
             <CardHeader className=" text-asiatech-gray-800">
-               {/* <div>
-            <TriangleExclamationIcon className="w-6 h-6" />
-          </div> */}
-             <div className="flex items-center max-sm:w-full max-sm:mb-2">
-               <WalletImportIcon className="w-6 h-6 ml-2" />
-               <span className="font-extrabold text-base whitespace-nowrap max-sm:text-sm">
-                  مدیریت درآمدها
-               </span>
-            </div>
+               <div className="flex items-center max-sm:w-full max-sm:mb-2">
+                  <CardExchangeIcon className="w-6 h-6 ml-2" />
+                  <span className="font-extrabold text-base whitespace-nowrap max-sm:text-sm">
+                     مدیریت دسته‌بندی‌ها
+                  </span>
+               </div>
             </CardHeader>
             <CardBody className="text-right">
-               مبدا و مقصد تراکنش های خود را مدیریت کنید.
-            </CardBody>
+               <p className="mb-2">دسته‌بندی حساب‌های خود را مدیریت کنید.</p>
 
-            <div className="w-full flex flex-wrap items-center justify-between">
-               <Tabs
-                  aria-label="Options"
-                  classNames={{
-                     panel: '!px-0',
-                     tabList: 'bg-asiatech-darkblue-400 w-full',
-                     tabContent: 'group-data-[selected=true]:text-white',
-                     cursor: 'bg-asiatech-blue-904',
-                     base: 'overflow-auto max-sm:w-full'
-                  }}
-                  //   selectedKey={selected}
-                  onSelectionChange={(e: any) => {
-                     // router.push(`/panel/discounts?page=${e}`);
-                  }}
-               >
-                  <Tab
-                     key="discount"
-                     title={
-                        <p className="flex items-center">
-                           {/* <CurlyPercentIcon className="w-4 h-4 ml-2" /> */}
-                           <span>تخفیف ها</span>
-                        </p>
-                     }
-                  ></Tab>
-                  <Tab
-                     key="giftcard"
-                     title={
-                        <p className="flex items-center">
-                           {/* <DebitCardIcon className="w-4 h-4 ml-2" /> */}
-                           <span>کارت هدیه ها</span>
-                        </p>
-                     }
-                  ></Tab>
-               </Tabs>
-            </div>
+               <div className="w-full flex flex-col items-start justify-center mb-4">
+                  <Tabs
+                     aria-label="Options"
+                     classNames={{
+                        panel: '!px-0',
+                        tabList: 'bg-green-600 text-white w-full',
+                        tabContent: 'text-white group-data-[selected=true]:text-black',
+                        cursor: 'bg-blue-800',
+                        base: 'overflow-auto lg:w-5/12 '
+                     }}
+                     onSelectionChange={(e: any) => {
+                        setSelectedTab(e);
+                     }}
+                  >
+                     <Tab key="import" title="ورودی"></Tab>
+                     <Tab key="export" title="خروجی"></Tab>
+                     <Tab key="boxes" title="صندوق‌ها"></Tab>
+                  </Tabs>
+               </div>
+               {selectedTab === 'import' ? (
+                  <IncomeCategory />
+               ) : selectedTab === 'export' ? (
+                  <OutgoCategory />
+               ) : selectedTab === 'boxes' ? (
+                  <BoxesCategory />
+               ) : (
+                  ''
+               )}
+            </CardBody>
          </Card>
       </>
    );
