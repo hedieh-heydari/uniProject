@@ -35,3 +35,14 @@ body {
    .data-\[focus\=true\]\:border-default-foreground[data-focus='true'] {
    border-color: #d6dde3 !important;
 }
+
+.green-radial {
+   background: radial-gradient(
+     45.87% 45.87% at 39.59% 50%,
+     rgba(32, 61, 35, 0.8) 0%,
+     rgb(32, 61, 51) 100%
+   );
+ }
+ .transparent-white{
+   background: rgba(255, 255, 255, .5);
+ }
