@@ -9,7 +9,6 @@ export const loginController = (
    setLoading(true);
    loginApi(loginData)
       .then((res: any) => {
-         console.log(res);
          localStorage.setItem('token', res.data.token);
          navigate('/');
          toast.success('خوش آمدید.');

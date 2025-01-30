@@ -7,6 +7,7 @@ import SignupIndex from './feature/signup/views/SignupIndex';
 import WithdrawalIndex from './feature/withdrawal/views/WithdrawalIndex';
 import DepositIndex from './feature/deposit/views/DepositIndex';
 import CategoryIndex from './feature/category/views/category';
+import { LogoutIndex } from './feature/logout/views/logoutIndex';
 
 const routes = createBrowserRouter([
    {
@@ -32,6 +33,10 @@ const routes = createBrowserRouter([
          {
             path:'/category',
             element:<CategoryIndex/>
+         },
+         {
+            path:'/logout',
+            element:<LogoutIndex/>
          }
       ]
    },
