@@ -4,19 +4,21 @@ import { loginController } from '../helper/controller';
 
 export const useLogin = () => {
    const navigate = useNavigate();
+   const [loading, setLoading] = useState<boolean>(false)
    const [loginData, setLoginData] = useState({
       email: '',
       password: ''
    });
 
    const loginHandler = () =>{
-    loginController(loginData, navigate)
+    loginController(loginData, navigate, setLoading)
    }
 
    return {
       navigate,
       loginData,
       setLoginData, 
-      loginHandler
+      loginHandler, 
+      loading
    };
 };

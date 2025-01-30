@@ -2,7 +2,8 @@ import { Button } from '@nextui-org/react';
 import { useLogin } from '../hooks/useLogin';
 
 const LoginIndex = () => {
-   const { navigate, loginData, loginHandler, setLoginData } = useLogin();
+   const { navigate, loginData, loginHandler, setLoginData, loading } =
+      useLogin();
    return (
       <>
          <div className="green-radial min-w-full min-h-screen flex justify-center relative">
@@ -11,7 +12,7 @@ const LoginIndex = () => {
                   className="rounded-14 px-12 py-8 transparent-white  w-[450px] flex flex-col items-center"
                   onSubmit={(e) => {
                      e.preventDefault();
-                     loginHandler()
+                     loginHandler();
                   }}
                >
                   <img
@@ -60,6 +61,7 @@ const LoginIndex = () => {
                      />
                   </div>
                   <Button
+                     isDisabled={loading}
                      type="submit"
                      className="bg-green-900 text-white w-full rounded-14 mt-6 font-bold"
                      color="primary"
