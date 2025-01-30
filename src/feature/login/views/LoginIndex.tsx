@@ -2,7 +2,7 @@ import { Button } from '@nextui-org/react';
 import { useLogin } from '../hooks/useLogin';
 
 const LoginIndex = () => {
-   const {navigate} = useLogin()
+   const { navigate, loginData, loginHandler, setLoginData } = useLogin();
    return (
       <>
          <div className="green-radial min-w-full min-h-screen flex justify-center relative">
@@ -11,6 +11,7 @@ const LoginIndex = () => {
                   className="rounded-14 px-12 py-8 transparent-white  w-[450px] flex flex-col items-center"
                   onSubmit={(e) => {
                      e.preventDefault();
+                     loginHandler()
                   }}
                >
                   <img
@@ -25,13 +26,20 @@ const LoginIndex = () => {
                      <div className="border-b-1 mx-32 flex justify-center"></div>
                   </div>
                   <div className="flex flex-col w-full">
-                     <label htmlFor="username" className="font-bold text-white">
-                        نام کاربری
+                     <label htmlFor="email" className="font-bold text-white">
+                        ایمیل{' '}
                      </label>
                      <input
-                        type="text"
-                        className="mt-2 p-2 h-10 rounded-14 bg-green-50 text-white focus:outline-none text-left "
+                        type="email"
+                        className="mt-2 p-2 h-10 rounded-14 bg-green-50 text-black focus:outline-none text-left "
                         dir="ltr"
+                        name="email"
+                        onChange={(e: any) => {
+                           setLoginData({
+                              ...loginData,
+                              email: e.target.value
+                           });
+                        }}
                      />
                   </div>
                   <div className="flex flex-col w-full mt-4">
@@ -40,8 +48,15 @@ const LoginIndex = () => {
                      </label>
                      <input
                         type="password"
-                        className="mt-2 p-2 h-10 rounded-14 bg-green-50 text-white focus:outline-none text-left"
+                        className="mt-2 p-2 h-10 rounded-14 bg-green-50 text-black focus:outline-none text-left"
                         dir="ltr"
+                        name="password"
+                        onChange={(e: any) => {
+                           setLoginData({
+                              ...loginData,
+                              password: e.target.value
+                           });
+                        }}
                      />
                   </div>
                   <Button
@@ -53,7 +68,7 @@ const LoginIndex = () => {
                   </Button>
                   <span
                      onClick={() => {
-                        navigate('/signup')
+                        navigate('/signup');
                      }}
                      className="text-xs cursor-pointer mt-2 text-green-950"
                   >

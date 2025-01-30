@@ -1,9 +1,22 @@
-import { useNavigate, } from "react-router-dom"
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginController } from '../helper/controller';
 
-export const useLogin = () =>{
-    const navigate = useNavigate()
+export const useLogin = () => {
+   const navigate = useNavigate();
+   const [loginData, setLoginData] = useState({
+      email: '',
+      password: ''
+   });
 
-    return{
-        navigate
-    }
-}
+   const loginHandler = () =>{
+    loginController(loginData, navigate)
+   }
+
+   return {
+      navigate,
+      loginData,
+      setLoginData, 
+      loginHandler
+   };
+};
