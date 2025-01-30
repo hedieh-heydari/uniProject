@@ -1,10 +1,12 @@
 import { toast } from 'react-toastify';
 import { loginApi } from './api';
+import { profileReduce } from '../../../store/profileSlice';
 
 export const loginController = (
    loginData: any,
    navigate: Function,
-   setLoading: Function
+   setLoading: Function,
+   Dispatch:Function
 ) => {
    setLoading(true);
    loginApi(loginData)
@@ -12,6 +14,7 @@ export const loginController = (
          localStorage.setItem('token', res.data.token);
          navigate('/');
          toast.success('خوش آمدید.');
+         Dispatch(profileReduce(res.data.user));
       })
       .catch((err: any) => {
          console.log(err);

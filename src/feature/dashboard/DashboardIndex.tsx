@@ -1,6 +1,13 @@
 import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { useSelector } from 'react-redux';
 
 const DashboardIndex = () => {
+
+   const userID = useSelector(
+      (state: any) => state.profile.person?.id
+   );
+
+   console.log(userID, 'userid')
    return (
       <Card>
          <CardHeader className=" text-asiatech-gray-800">

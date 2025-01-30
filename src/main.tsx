@@ -4,11 +4,14 @@ import './index.css';
 import router from './router';
 import { RouterProvider } from 'react-router-dom';
 import { Bounce, ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 createRoot(document.getElementById('root')!).render(
    <StrictMode>
-      <RouterProvider router={router} />
-      <ToastContainer
+      <Provider store={store}>
+         <RouterProvider router={router} />
+         <ToastContainer
             position="top-right"
             autoClose={5000}
             hideProgressBar={false}
@@ -21,5 +24,6 @@ createRoot(document.getElementById('root')!).render(
             theme="light"
             transition={Bounce}
          />
+      </Provider>
    </StrictMode>
 );
