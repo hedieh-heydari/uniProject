@@ -9,7 +9,8 @@ export interface IUpsertCategoryModal {
    type: string;
    selectedData:IIncomeList | undefined;
    setData:Function
-   addHandler:Function
+   addHandler:Function,
+   editHandler:Function
 }
 export interface IIncomeList {
    _id: string;

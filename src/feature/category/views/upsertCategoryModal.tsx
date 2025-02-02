@@ -15,11 +15,10 @@ const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({
    selectedData,
    type,
    setData,
-   addHandler
+   addHandler,
+   editHandler
 }) => {
    console.log(selectedData, 'selecteddata from modal');
-   console.log(type, 'modal type');
-   console.log(typeof selectedData?.logo);
    return (
       <Modal
          backdrop="opaque"
@@ -73,7 +72,7 @@ const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({
                <div className="w-full justify-end flex flex-wrap">
                   <Button
                      onClick={() => {
-                        addHandler();
+                        selectedData?._id ? editHandler() : addHandler();
                      }}
                      type="submit"
                      className={`max-sm:w-full bg-green-900 text-green-100`}

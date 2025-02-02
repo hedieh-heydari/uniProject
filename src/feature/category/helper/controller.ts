@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { addIncomeApi, GetIncomeApi } from './api';
+import { addIncomeApi, editIncomeApi, GetIncomeApi } from './api';
 
 export const getIncomeController = (setIncomeData: Function) => {
    GetIncomeApi()
@@ -26,6 +26,26 @@ export const addIncomeController = (
          setSelectedIncome();
          setOpenUpsertModal(false);
          getIncomeHandler();
+      })
+      .catch(() => {
+         toast.error('خطایی رخ داده است.');
+      });
+};
+export const editIncomeController = (
+   editIncomeData: any,
+   getIncomeHandler: Function,
+   setOpenUpsertModal: Function,
+   setSelectedIncome: Function
+) => {
+   const formData = new FormData();
+   formData.append('logo', editIncomeData.logo[0]);
+   formData.append('title', editIncomeData.title);
+   editIncomeApi(editIncomeData._id, formData)
+      .then(() => {
+         toast.success('با موفقیت ویرایش شد.');
+         getIncomeHandler();
+         setOpenUpsertModal(false);
+         setSelectedIncome();
       })
       .catch(() => {
          toast.error('خطایی رخ داده است.');

@@ -6,8 +6,15 @@ import { IIncomeList } from '../interfaces/CategoryInterfaces';
 import UpsertCategoryModal from './upsertCategoryModal';
 
 const IncomeCategory = () => {
-   const { openUpsertModal, setOpenUpsertModal, incomeData,selectedIncome,setSelectedIncome,addIncomeHandler} =
-      useIncomeCategory();
+   const {
+      openUpsertModal,
+      setOpenUpsertModal,
+      incomeData,
+      selectedIncome,
+      setSelectedIncome,
+      addIncomeHandler,
+      editIncomeHandler
+   } = useIncomeCategory();
    return (
       <div className="flex flex-wrap w-full">
          <AddNewComponent
@@ -21,9 +28,17 @@ const IncomeCategory = () => {
                   <CardsComponent
                      key={index}
                      categoryName={i.title}
-                     icon={i.logo ? <img src={`http://localhost:5000/uploads/${i.logo}`} /> : <WalletExportIcon className="w-5 h-5" />}
+                     icon={
+                        i.logo ? (
+                           <img
+                              src={`http://localhost:5000/uploads/${i.logo}`}
+                           />
+                        ) : (
+                           <WalletExportIcon className="w-5 h-5" />
+                        )
+                     }
                      editFunction={() => {
-                        setSelectedIncome(i)
+                        setSelectedIncome(i);
                         setOpenUpsertModal(true);
                      }}
                   />
@@ -36,7 +51,8 @@ const IncomeCategory = () => {
             type="income"
             selectedData={selectedIncome}
             setData={setSelectedIncome}
-            addHandler ={addIncomeHandler}
+            addHandler={addIncomeHandler}
+            editHandler={editIncomeHandler}
          />
       </div>
    );
