@@ -66,7 +66,6 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen,addHandler,edit
                         className="w-full h-10 border rounded-medium focus:outline-none px-3"
                         thousandSeparator={true}
                         onValueChange={(e:any) => {
-                           console.log(e.value)
                            setData({ ...selectedData, initialAmount: e.value });
                         }}
                         value={selectedData?.initialAmount}

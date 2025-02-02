@@ -16,7 +16,7 @@ export const useBoxesCategory = () => {
          createdAt: '',
          updatedAt: '',
          __v: 0,
-         amount: ''
+         initialAmount: ''
       }
    ]);
    const [selectedBox, setSelectedBox] = useState<IIncomeList>();

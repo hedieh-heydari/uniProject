@@ -11,7 +11,7 @@ import { IDeleteWithdrawalModal } from '../interfaces/WithdrawalInterface';
 
 const DeleteWithdrawalModal: FC<IDeleteWithdrawalModal> = ({
    open,
-   setOpen
+   setOpen,deleteHandler, selectedData
 }) => {
    return (
       <Modal
@@ -35,9 +35,10 @@ const DeleteWithdrawalModal: FC<IDeleteWithdrawalModal> = ({
             <ModalFooter className="flex flex-wrap">
                <Button
                   color="danger"
-                  //   disabled={disableDeleteBtn}
                   className="bg-red-600 max-sm:w-full"
-                  onClick={() => {}}
+                  onClick={() => {
+                     deleteHandler(selectedData?._id)
+                  }}
                >
                   حذف
                </Button>

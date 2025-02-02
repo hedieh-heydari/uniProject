@@ -22,13 +22,22 @@ import TrashIcon from '../../../assets/icons/TrashIcon';
 import EditIcon from '../../../assets/icons/EditIcon';
 import DeleteWithdrawalModal from './DeleteWithdrawalModal';
 import UpsertWithdrawalModal from './UpsertWithdrawalModal';
+import { IWithdrawal } from '../interfaces/WithdrawalInterface';
+import NumberSeparator from '../../../utils/NumberSeprator';
 
 const WithdrawalIndex = () => {
    const {
       openDeleteWidthrawalModal,
       openUpsertWidthrawalModal,
       setOpenDeleteWithdrawalModal,
-      setOpenUpsertWithdrawalModal
+      setOpenUpsertWithdrawalModal,
+      setSelectedWithdraw,
+      addWithdrawalHandler,
+      deleteWithdrawHandler,
+      editWithdrawalHandler,
+      selectedWithdraw,
+      withdrwalaData, 
+      outgoSelect, boxes
    } = useWithdrawal();
    return (
       <Card className="px-4 py-6 my-6 overflow-visible">
@@ -67,11 +76,11 @@ const WithdrawalIndex = () => {
                <TableColumn className="!rounded-l-none rounded-r-lg" key="id">
                   #
                </TableColumn>
-               <TableColumn key="date">از حجم</TableColumn>
-               <TableColumn key="type">تا حجم</TableColumn>
-               <TableColumn key="mobile"> قیمت </TableColumn>
-               <TableColumn key="register-date">زمان ایجاد</TableColumn>
-               <TableColumn key="update-date">زمان آپدیت</TableColumn>
+               <TableColumn key="date">مبلغ </TableColumn>
+               <TableColumn key="type"> تاریخ</TableColumn>
+               <TableColumn key="mobile"> از حساب </TableColumn>
+               <TableColumn key="register-date">به حساب </TableColumn>
+               <TableColumn key="description">توضیحات</TableColumn>
                <TableColumn
                   key="description"
                   className="!rounded-r-none rounded-l-lg flex justify-end items-center"
@@ -84,64 +93,81 @@ const WithdrawalIndex = () => {
                isLoading={false}
                emptyContent={true ? ' ' : 'اطلاعات وارد شده وجود ندارد.'}
             >
-               <TableRow className="bordertabel">
-                  <TableCell>1</TableCell>
-                  <TableCell dir="ltr">2</TableCell>
-                  <TableCell dir="ltr">3</TableCell>
-                  <TableCell dir="ltr">4 </TableCell>
-                  <TableCell dir="ltr">5</TableCell>
-                  <TableCell dir="ltr">6</TableCell>
-                  <TableCell className="flex justify-end">
-                     <Dropdown
-                        placement="bottom-start"
-                        aria-labelledby="option button"
-                        className="!min-w-[130px] font-IranYekan"
-                     >
-                        <DropdownTrigger onClick={() => {}}>
-                           <div>
-                              <ElipsisIcon className="w-6 h-6" />
-                           </div>
-                        </DropdownTrigger>
-                        <DropdownMenu
-                           aria-label="Static Actions"
-                           className=" text-gray-600"
-                        >
-                           <DropdownItem
-                              key="edit"
-                              onClick={() => {
-                                 setOpenUpsertWithdrawalModal(true);
-                              }}
+               {
+                  withdrwalaData && withdrwalaData.map((i:IWithdrawal, index:number)=>{
+                     return(
+                        <TableRow className="bordertabel" key={index}>
+                        <TableCell>{index +1} </TableCell>
+                        <TableCell dir="ltr"> {NumberSeparator(i.amount)} </TableCell>
+                        <TableCell dir="ltr">{i.date&& i.date.split('T')[0]}</TableCell>
+                        <TableCell dir="ltr"> {i.fromBox} </TableCell>
+                        <TableCell dir="ltr">{i.toBox}</TableCell>
+                        <TableCell dir="ltr">{i.description}</TableCell>
+                        <TableCell className="flex justify-end">
+                           <Dropdown
+                              placement="bottom-start"
+                              aria-labelledby="option button"
+                              className="!min-w-[130px] font-IranYekan"
                            >
-                              <div className="flex items-center">
-                                 <EditIcon className="w-4 h-4 ml-2" />
-                                 <span> ویرایش </span>
-                              </div>
-                           </DropdownItem>
-                           <DropdownItem
-                              key="new"
-                              onClick={() => {
-                                 setOpenDeleteWithdrawalModal(true);
-                              }}
-                           >
-                              <div className="flex items-center">
-                                 <TrashIcon className="w-4 h-4 ml-2 text-gray-600" />
-                                 <span>حذف </span>
-                              </div>
-                           </DropdownItem>
-                        </DropdownMenu>
-                     </Dropdown>
-                  </TableCell>
-               </TableRow>
+                              <DropdownTrigger onClick={() => {
+                                 setSelectedWithdraw(i)
+                              }}>
+                                 <div>
+                                    <ElipsisIcon className="w-6 h-6" />
+                                 </div>
+                              </DropdownTrigger>
+                              <DropdownMenu
+                                 aria-label="Static Actions"
+                                 className=" text-gray-600"
+                              >
+                                 <DropdownItem
+                                    key="edit"
+                                    onClick={() => {
+                                       setOpenUpsertWithdrawalModal(true);
+                                    }}
+                                 >
+                                    <div className="flex items-center">
+                                       <EditIcon className="w-4 h-4 ml-2" />
+                                       <span> ویرایش </span>
+                                    </div>
+                                 </DropdownItem>
+                                 <DropdownItem
+                                    key="new"
+                                    onClick={() => {
+                                       setOpenDeleteWithdrawalModal(true);
+                                    }}
+                                 >
+                                    <div className="flex items-center">
+                                       <TrashIcon className="w-4 h-4 ml-2 text-gray-600" />
+                                       <span>حذف </span>
+                                    </div>
+                                 </DropdownItem>
+                              </DropdownMenu>
+                           </Dropdown>
+                        </TableCell>
+                     </TableRow>
+                     )
+                  })
+               }
+              
             </TableBody>
          </Table>
 
          <DeleteWithdrawalModal
             open={openDeleteWidthrawalModal}
             setOpen={setOpenDeleteWithdrawalModal}
+            deleteHandler ={deleteWithdrawHandler}
+            selectedData= {selectedWithdraw}
          />
          <UpsertWithdrawalModal
             open={openUpsertWidthrawalModal}
             setOpen={setOpenUpsertWithdrawalModal}
+            selectedData= {selectedWithdraw}
+            setSelectedData={setSelectedWithdraw}
+            editHandler ={editWithdrawalHandler}
+            addHandler = {addWithdrawalHandler}
+            outgoSelect={outgoSelect}
+            boxesSelect={boxes}
          />
       </Card>
    );

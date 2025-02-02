@@ -53,6 +53,7 @@ export const useOutgoCategory = () => {
       addOutgoHandler,
       editOutgoHandler,
       selectedOutgo,
-      setSelectedOutgo
+      setSelectedOutgo,
+      getOutgoHandler
    };
 };
