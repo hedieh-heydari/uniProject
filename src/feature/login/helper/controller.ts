@@ -5,10 +5,8 @@ import { profileReduce } from '../../../store/profileSlice';
 export const loginController = (
    loginData: any,
    navigate: Function,
-   setLoading: Function,
    Dispatch:Function
 ) => {
-   setLoading(true);
    loginApi(loginData)
       .then((res: any) => {
          localStorage.setItem('token', res.data.token);
@@ -21,7 +19,4 @@ export const loginController = (
          console.log(err);
          toast.error('خطایی رخ داده است.');
       })
-      .catch(() => {
-         setLoading(false);
-      });
 };

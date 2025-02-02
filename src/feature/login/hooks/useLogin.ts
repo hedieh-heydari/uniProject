@@ -6,21 +6,19 @@ import { useDispatch } from 'react-redux';
 export const useLogin = () => {
    const navigate = useNavigate();
    const Dispatch = useDispatch();
-   const [loading, setLoading] = useState<boolean>(false)
    const [loginData, setLoginData] = useState({
       email: '',
       password: ''
    });
 
    const loginHandler = () =>{
-    loginController(loginData, navigate, setLoading, Dispatch)
+    loginController(loginData, navigate, Dispatch)
    }
 
    return {
       navigate,
       loginData,
       setLoginData, 
-      loginHandler, 
-      loading
+      loginHandler
    };
 };

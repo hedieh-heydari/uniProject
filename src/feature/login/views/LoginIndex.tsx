@@ -2,7 +2,7 @@ import { Button } from '@nextui-org/react';
 import { useLogin } from '../hooks/useLogin';
 
 const LoginIndex = () => {
-   const { navigate, loginData, loginHandler, setLoginData, loading } =
+   const { navigate, loginData, loginHandler, setLoginData } =
       useLogin();
    return (
       <>
@@ -61,7 +61,6 @@ const LoginIndex = () => {
                      />
                   </div>
                   <Button
-                     isDisabled={loading}
                      type="submit"
                      className="bg-green-900 text-white w-full rounded-14 mt-6 font-bold"
                      color="primary"
