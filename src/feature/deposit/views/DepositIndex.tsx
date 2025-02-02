@@ -22,13 +22,24 @@ import WalletImportIcon from '../../../assets/icons/WalletImportIcon';
 import { useDeposit } from '../hooks/useDeposit';
 import DeleteDepositeModal from './DeleteDepositeModal';
 import UpsertDepositModal from './UpsertDepositModal';
+import { IDeposit } from '../interface/DepositInterface';
+import NumberSeparator from '../../../utils/NumberSeprator';
 
 const DepositIndex = () => {
    const {
       openDeleteDepositModal,
       openUpsertDepositModal,
       setOpenDeleteDpositModal,
-      setOpenUpserDepositModal
+      setOpenUpserDepositModal,
+      depositeData,
+      addDepositHandler,
+      boxes,
+      deleteDepositHandler,
+      editDepositHandler,
+      incomeSelect,
+      selectedDeposit,
+      setDepositData,
+      setSelectedDeposit
    } = useDeposit();
 
    return (
@@ -68,11 +79,11 @@ const DepositIndex = () => {
                <TableColumn className="!rounded-l-none rounded-r-lg" key="id">
                   #
                </TableColumn>
-               <TableColumn key="date">از حجم</TableColumn>
-               <TableColumn key="type">تا حجم</TableColumn>
-               <TableColumn key="mobile"> قیمت </TableColumn>
-               <TableColumn key="register-date">زمان ایجاد</TableColumn>
-               <TableColumn key="update-date">زمان آپدیت</TableColumn>
+               <TableColumn key="date">مبلغ </TableColumn>
+               <TableColumn key="type"> تاریخ</TableColumn>
+               <TableColumn key="mobile"> از حساب </TableColumn>
+               <TableColumn key="register-date">به حساب </TableColumn>
+               <TableColumn key="description">توضیحات</TableColumn>
                <TableColumn
                   key="description"
                   className="!rounded-r-none rounded-l-lg flex justify-end items-center"
@@ -85,64 +96,83 @@ const DepositIndex = () => {
                isLoading={false}
                emptyContent={true ? ' ' : 'اطلاعات وارد شده وجود ندارد.'}
             >
-               <TableRow className="bordertabel">
-                  <TableCell>1</TableCell>
-                  <TableCell dir="ltr">2</TableCell>
-                  <TableCell dir="ltr">3</TableCell>
-                  <TableCell dir="ltr">4 </TableCell>
-                  <TableCell dir="ltr">5</TableCell>
-                  <TableCell dir="ltr">6</TableCell>
-                  <TableCell className="flex justify-end">
-                     <Dropdown
-                        placement="bottom-start"
-                        aria-labelledby="option button"
-                        className="!min-w-[130px] font-IranYekan"
-                     >
-                        <DropdownTrigger onClick={() => {}}>
-                           <div>
-                              <ElipsisIcon className="w-6 h-6" />
-                           </div>
-                        </DropdownTrigger>
-                        <DropdownMenu
-                           aria-label="Static Actions"
-                           className=" text-gray-600"
-                        >
-                           <DropdownItem
-                              key="edit"
-                              onClick={() => {
-                                 setOpenUpserDepositModal(true);
-                              }}
-                           >
-                              <div className="flex items-center">
-                                 <EditIcon className="w-4 h-4 ml-2" />
-                                 <span> ویرایش </span>
-                              </div>
-                           </DropdownItem>
-                           <DropdownItem
-                              key="new"
-                              onClick={() => {
-                                 setOpenDeleteDpositModal(true);
-                              }}
-                           >
-                              <div className="flex items-center">
-                                 <TrashIcon className="w-4 h-4 ml-2 text-gray-600" />
-                                 <span>حذف </span>
-                              </div>
-                           </DropdownItem>
-                        </DropdownMenu>
-                     </Dropdown>
-                  </TableCell>
-               </TableRow>
+               {depositeData &&
+                  depositeData.map((i: IDeposit, index: number) => {
+                     return (
+                        <TableRow className="bordertabel">
+                           <TableCell>{index + 1}</TableCell>
+                           <TableCell dir="ltr">
+                              {NumberSeparator(i.amount)}
+                           </TableCell>
+                           <TableCell dir="ltr">
+                              {i.date && i.date.split('T')[0]}
+                           </TableCell>
+                           <TableCell dir="ltr"> {i.fromBox} </TableCell>
+                           <TableCell dir="ltr">{i.toBox}</TableCell>
+                           <TableCell dir="ltr">{i.description}</TableCell>
+                           <TableCell className="flex justify-end">
+                              <Dropdown
+                                 placement="bottom-start"
+                                 aria-labelledby="option button"
+                                 className="!min-w-[130px] font-IranYekan"
+                              >
+                                 <DropdownTrigger onClick={() => {
+                                       setSelectedDeposit(i)
+                                 }}>
+                                    <div>
+                                       <ElipsisIcon className="w-6 h-6" />
+                                    </div>
+                                 </DropdownTrigger>
+                                 <DropdownMenu
+                                    aria-label="Static Actions"
+                                    className=" text-gray-600"
+                                 >
+                                    <DropdownItem
+                                       key="edit"
+                                       onClick={() => {
+                                          setOpenUpserDepositModal(true);
+                                       }}
+                                    >
+                                       <div className="flex items-center">
+                                          <EditIcon className="w-4 h-4 ml-2" />
+                                          <span> ویرایش </span>
+                                       </div>
+                                    </DropdownItem>
+                                    <DropdownItem
+                                       key="new"
+                                       onClick={() => {
+                                          setOpenDeleteDpositModal(true);
+                                       }}
+                                    >
+                                       <div className="flex items-center">
+                                          <TrashIcon className="w-4 h-4 ml-2 text-gray-600" />
+                                          <span>حذف </span>
+                                       </div>
+                                    </DropdownItem>
+                                 </DropdownMenu>
+                              </Dropdown>
+                           </TableCell>
+                        </TableRow>
+                     );
+                  })}
             </TableBody>
          </Table>
 
          <DeleteDepositeModal
             open={openDeleteDepositModal}
             setOpen={setOpenDeleteDpositModal}
+            deleteHandler ={deleteDepositHandler}
+            selectedData= {selectedDeposit}
          />
          <UpsertDepositModal
             open={openUpsertDepositModal}
             setOpen={setOpenUpserDepositModal}
+            selectedData= {selectedDeposit}
+            setSelectedData={setSelectedDeposit}
+            editHandler ={editDepositHandler}
+            addHandler = {addDepositHandler}
+            IncomeSelect={incomeSelect}
+            boxesSelect={boxes}
          />
       </Card>
    );

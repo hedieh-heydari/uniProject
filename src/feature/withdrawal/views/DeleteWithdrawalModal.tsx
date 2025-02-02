@@ -11,7 +11,9 @@ import { IDeleteWithdrawalModal } from '../interfaces/WithdrawalInterface';
 
 const DeleteWithdrawalModal: FC<IDeleteWithdrawalModal> = ({
    open,
-   setOpen,deleteHandler, selectedData
+   setOpen,
+   deleteHandler,
+   selectedData
 }) => {
    return (
       <Modal
@@ -37,7 +39,7 @@ const DeleteWithdrawalModal: FC<IDeleteWithdrawalModal> = ({
                   color="danger"
                   className="bg-red-600 max-sm:w-full"
                   onClick={() => {
-                     deleteHandler(selectedData?._id)
+                     deleteHandler(selectedData?._id);
                   }}
                >
                   حذف

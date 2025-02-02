@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, Key } from 'react';
 import { IUpsertDepositModal } from '../interface/DepositInterface';
 import {
    Button,
@@ -12,8 +12,20 @@ import {
 } from '@nextui-org/react';
 import { NumericFormat } from 'react-number-format';
 import DatePickerComponent from '../../../components/DatePickerComponent';
+import { DateObject } from 'react-multi-date-picker';
+import persian from 'react-date-object/calendars/persian';
+import gregorian_en from 'react-date-object/locales/gregorian_en';
 
-const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
+const UpsertDepositModal: FC<IUpsertDepositModal> = ({
+   open,
+   setOpen,
+   IncomeSelect,
+   addHandler,
+   boxesSelect,
+   editHandler,
+   selectedData,
+   setSelectedData
+}) => {
    return (
       <Modal
          backdrop="opaque"
@@ -36,23 +48,47 @@ const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
                         dir="ltr"
                         className="w-full h-10 border rounded-medium focus:outline-none px-3"
                         thousandSeparator={true}
-                        onValueChange={() => {}}
-                        value={''}
+                        onValueChange={(e: any) => {
+                           setSelectedData({
+                              ...selectedData,
+                              amount: e.floatValue
+                           });
+                        }}
+                        value={selectedData?.amount}
                      />
                   </div>
                   <div className="w-full sm:w-1/2 max-sm:mt-4">
                      <p className="text-gray-700 mb-2 font-bold">تاریخ</p>
                      <DatePickerComponent
-                        value={''}
                         placeHolder=" انتخاب کنید"
-                        onFocusedDateChange={() => {}}
+                        value={
+                           selectedData?.date
+                              ? selectedData?.date?.split('T')[0]
+                              : ''
+                        }
+                        onFocusedDateChange={(e: any) => {
+                           setSelectedData({
+                              ...selectedData,
+                              date: new DateObject(e)
+                                 .convert(persian, gregorian_en)
+                                 .format()
+                           });
+                        }}
                      />
                   </div>
                   <div className="w-full sm:w-1/2 mt-4 sm:pl-4">
                      <p className="text-gray-700 mb-2 font-bold ">از حساب</p>
                      <Select
                         className="w-full customised-select"
-                        onChange={() => {}}
+                        selectedKeys={
+                           new Set<Key>([String(selectedData?.fromBox)]) as any
+                        }
+                        onChange={(e: any) => {
+                           setSelectedData({
+                              ...selectedData,
+                              fromBox: e.target.value
+                           });
+                        }}
                         variant="bordered"
                         classNames={{
                            base: '!h-10',
@@ -62,16 +98,28 @@ const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
                            selectorIcon: 'right-[unset] left-2'
                         }}
                      >
-                        <SelectItem value="created" key="created">
-                           حساب مبدا
-                        </SelectItem>
+                        {IncomeSelect.map((i: any) => {
+                           return (
+                              <SelectItem value={i.title} key={i.title}>
+                                 {i.title}
+                              </SelectItem>
+                           );
+                        })}
                      </Select>
                   </div>
                   <div className="w-full sm:w-1/2 mt-4">
                      <p className="text-gray-700 mb-2 font-bold ">به حساب</p>
                      <Select
                         className="w-full customised-select"
-                        onChange={() => {}}
+                        onChange={(e: any) => {
+                           setSelectedData({
+                              ...selectedData,
+                              toBox: e.target.value
+                           });
+                        }}
+                        selectedKeys={
+                           new Set<Key>([String(selectedData?.toBox)]) as any
+                        }
                         variant="bordered"
                         classNames={{
                            base: 'h-10',
@@ -81,15 +129,25 @@ const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
                            selectorIcon: 'right-[unset] left-2'
                         }}
                      >
-                        <SelectItem value="created_at" key="created_at">
-                           حساب مقصد
-                        </SelectItem>
+                        {boxesSelect.map((i: any) => {
+                           return (
+                              <SelectItem value={i.title} key={i.title}>
+                                 {i.title}
+                              </SelectItem>
+                           );
+                        })}
                      </Select>
                   </div>
                   <div className="w-full mt-4">
                      <p className="text-gray-700 mb-2 font-bold ">توضیحات</p>
                      <textarea
-                        onChange={() => {}}
+                        value={selectedData?.description}
+                        onChange={(e: any) => {
+                           setSelectedData({
+                              ...selectedData,
+                              description: e.target.value
+                           });
+                        }}
                         className="w-full border rounded-xl focus:outline-none p-3"
                      />
                   </div>
@@ -98,7 +156,9 @@ const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
             <ModalFooter>
                <div className="w-full justify-end flex flex-wrap">
                   <Button
-                     onClick={() => {}}
+                     onClick={() => {
+                        selectedData?._id ? editHandler() : addHandler();
+                     }}
                      type="submit"
                      className={`max-sm:w-full bg-green-900 text-green-100`}
                   >
@@ -109,6 +169,7 @@ const UpsertDepositModal: FC<IUpsertDepositModal> = ({ open, setOpen }) => {
                      className="text-white bg-gray-400 max-sm:w-full sm:mr-2 max-sm:mt-3"
                      onClick={() => {
                         setOpen(false);
+                        setSelectedData();
                      }}
                   >
                      بازگشت

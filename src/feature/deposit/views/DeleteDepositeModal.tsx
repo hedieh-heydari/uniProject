@@ -9,7 +9,12 @@ import {
 import { FC } from 'react';
 import { IDeleteDepositModal } from '../interface/DepositInterface';
 
-const DeleteDepositeModal: FC<IDeleteDepositModal> = ({ open, setOpen }) => {
+const DeleteDepositeModal: FC<IDeleteDepositModal> = ({
+   open,
+   setOpen,
+   deleteHandler,
+   selectedData
+}) => {
    return (
       <Modal
          backdrop="opaque"
@@ -32,9 +37,10 @@ const DeleteDepositeModal: FC<IDeleteDepositModal> = ({ open, setOpen }) => {
             <ModalFooter className="flex flex-wrap">
                <Button
                   color="danger"
-                  //   disabled={disableDeleteBtn}
                   className="bg-red-600 max-sm:w-full"
-                  onClick={() => {}}
+                  onClick={() => {
+                     deleteHandler(selectedData?._id);
+                  }}
                >
                   حذف
                </Button>

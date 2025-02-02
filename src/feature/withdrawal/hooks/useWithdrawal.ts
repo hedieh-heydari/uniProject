@@ -6,15 +6,18 @@ import {
    getWithdrawalController
 } from '../helpers/controller';
 import { IWithdrawal } from '../interfaces/WithdrawalInterface';
-import { getBoxesController, getOutgoController } from '../../category/helper/controller';
+import {
+   getBoxesController,
+   getOutgoController
+} from '../../category/helper/controller';
 
 export const useWithdrawal = () => {
    const [openDeleteWidthrawalModal, setOpenDeleteWithdrawalModal] =
       useState<boolean>(false);
    const [openUpsertWidthrawalModal, setOpenUpsertWithdrawalModal] =
       useState<boolean>(false);
-      const [outgoSelect, setOutgoSelect] = useState([])
-      const [boxes, setBoxes] = useState([])
+   const [outgoSelect, setOutgoSelect] = useState([]);
+   const [boxes, setBoxes] = useState([]);
 
    const [withdrwalaData, setwithdrwalaData] = useState<IWithdrawal[]>([]);
    const [selectedWithdraw, setSelectedWithdraw] = useState<IWithdrawal>();
@@ -51,8 +54,8 @@ export const useWithdrawal = () => {
 
    useEffect(() => {
       getWithdrawalHandler();
-      getOutgoController(setOutgoSelect)
-      getBoxesController(setBoxes)
+      getOutgoController(setOutgoSelect);
+      getBoxesController(setBoxes);
    }, []);
 
    return {
@@ -65,8 +68,8 @@ export const useWithdrawal = () => {
       addWithdrawalHandler,
       editWithdrawalHandler,
       deleteWithdrawHandler,
-      withdrwalaData, 
-      outgoSelect, 
+      withdrwalaData,
+      outgoSelect,
       boxes
    };
 };
