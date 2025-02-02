@@ -9,7 +9,17 @@ import {
 } from '@nextui-org/react';
 import { IUpsertCategoryModal } from '../interfaces/CategoryInterfaces';
 
-const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({ open, setOpen }) => {
+const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({
+   open,
+   setOpen,
+   selectedData,
+   type,
+   setData,
+   addHandler
+}) => {
+   console.log(selectedData, 'selecteddata from modal');
+   console.log(type, 'modal type');
+   console.log(typeof selectedData?.logo);
    return (
       <Modal
          backdrop="opaque"
@@ -28,21 +38,43 @@ const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({ open, setOpen }) => {
                <div className="w-full flex flex-wrap">
                   <div className="w-full sm:w-1/2 sm:pl-4">
                      <p className="text-gray-700 mb-2 font-bold">عنوان</p>
-                     <input className="w-full h-10 border rounded-medium focus:outline-none px-3" />
+                     <input
+                        value={
+                           selectedData && selectedData.title
+                              ? selectedData.title
+                              : ''
+                        }
+                        onChange={(e: any) => {
+                           setData({ ...selectedData, title: e.target.value });
+                        }}
+                        className="w-full h-10 border rounded-medium focus:outline-none px-3"
+                     />
                   </div>
-                  <div className="w-full sm:w-1/2 max-sm:mt-4">
+                  <div className="w-full sm:w-1/2 max-sm:mt-4 relative">
                      <p className="text-gray-700 mb-2 font-bold">لوگو</p>
                      <input
-                        className="w-full h-10 border rounded-medium focus:outline-none px-3"
+                        onChange={(e: any) => {
+                           setData({ ...selectedData, logo: e.target.files });
+                        }}
                         type="file"
+                        className="opacity-0 absolute top-0 right-0 w-full h-full cursor-pointer"
                      />
+                     <div className="h-10 text-gray-500 rounded-14 flex flex-col justify-center align-middle border border-asiatech-darkblue-700 p-4">
+                        <p className={`text-gray-600 font-light text-sm`}>
+                           {typeof selectedData?.logo == 'object'
+                              ? selectedData?.logo[0].name
+                              : selectedData?.logo}
+                        </p>
+                     </div>
                   </div>
                </div>
             </ModalBody>
             <ModalFooter>
                <div className="w-full justify-end flex flex-wrap">
                   <Button
-                     onClick={() => {}}
+                     onClick={() => {
+                        addHandler();
+                     }}
                      type="submit"
                      className={`max-sm:w-full bg-green-900 text-green-100`}
                   >
@@ -53,6 +85,7 @@ const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({ open, setOpen }) => {
                      className="text-white bg-gray-400 max-sm:w-full sm:mr-2 max-sm:mt-3"
                      onClick={() => {
                         setOpen(false);
+                        setData();
                      }}
                   >
                      بازگشت
