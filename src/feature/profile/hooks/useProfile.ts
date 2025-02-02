@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getProfileController } from '../helpers/controller';
+import { getProfileController, updateProfileController } from '../helpers/controller';
 import { IProfileInterface } from '../interface/profileInterface';
 
 export const useProfile = () => {
-   const [loading, setLoading] = useState<boolean>(false);
-   const userID = useSelector((state: any) => state.profile.person?.id);
+   const uId = localStorage.getItem('userId');
    const [profileData, setProfileData] = useState<IProfileInterface>({
       birthDate: '',
       completedProfile: false,
@@ -21,17 +19,19 @@ export const useProfile = () => {
    });
 
    const getProfileHandler = () => {
-      getProfileController(setLoading, userID, setProfileData);
+      uId && getProfileController(uId, setProfileData);
    };
+   const updateProfileHandler =() =>{
+    updateProfileController(profileData, getProfileHandler)
+   }
 
    useEffect(() => {
       getProfileHandler();
-   }, [userID]);
+   }, [uId]);
 
    return {
-      loading,
-      setLoading,
       profileData,
-      setProfileData
+      setProfileData,
+      updateProfileHandler
    };
 };

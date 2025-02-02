@@ -12,6 +12,7 @@ export const loginController = (
    loginApi(loginData)
       .then((res: any) => {
          localStorage.setItem('token', res.data.token);
+         localStorage.setItem('userId', res.data.user.id)
          navigate('/');
          toast.success('خوش آمدید.');
          Dispatch(profileReduce(res.data.user));
