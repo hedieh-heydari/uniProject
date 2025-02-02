@@ -10,7 +10,7 @@ import {
 import { IUpsertBoxesModal } from '../interfaces/CategoryInterfaces';
 import { NumericFormat } from 'react-number-format';
 
-const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen }) => {
+const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen,addHandler,editHandler,selectedData,setData }) => {
    return (
       <Modal
          backdrop="opaque"
@@ -29,14 +29,33 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen }) => {
                <div className="w-full flex flex-wrap">
                   <div className="w-full sm:w-1/2 sm:pl-4">
                      <p className="text-gray-700 mb-2 font-bold">عنوان</p>
-                     <input className="w-full h-10 border rounded-medium focus:outline-none px-3" />
+                     <input
+                      value={
+                        selectedData && selectedData.title
+                           ? selectedData.title
+                           : ''
+                     }
+                     onChange={(e: any) => {
+                        setData({ ...selectedData, title: e.target.value });
+                     }}
+                     className="w-full h-10 border rounded-medium focus:outline-none px-3" />
                   </div>
-                  <div className="w-full sm:w-1/2 max-sm:mt-4">
+                  <div className="w-full sm:w-1/2 max-sm:mt-4 relative">
                      <p className="text-gray-700 mb-2 font-bold">لوگو</p>
                      <input
-                        className="w-full h-10 border rounded-medium focus:outline-none px-3"
+                        onChange={(e: any) => {
+                           setData({ ...selectedData, logo: e.target.files });
+                        }}
                         type="file"
+                        className="opacity-0 absolute top-0 right-0 w-full h-full cursor-pointer"
                      />
+                     <div className="h-10 text-gray-500 rounded-14 flex flex-col justify-center align-middle border border-asiatech-darkblue-700 p-4">
+                        <p className={`text-gray-600 font-light text-sm`}>
+                           {typeof selectedData?.logo == 'object'
+                              ? selectedData?.logo[0].name
+                              : selectedData?.logo}
+                        </p>
+                     </div>
                   </div>
                   <div className="w-full sm:w-1/2 sm:pl-4 mt-4">
                      <p className="text-gray-700 mb-2 font-bold">
@@ -46,8 +65,11 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen }) => {
                         dir="ltr"
                         className="w-full h-10 border rounded-medium focus:outline-none px-3"
                         thousandSeparator={true}
-                        onValueChange={() => {}}
-                        value={''}
+                        onValueChange={(e:any) => {
+                           console.log(e.value)
+                           setData({ ...selectedData, initialAmount: e.value });
+                        }}
+                        value={selectedData?.initialAmount}
                      />
                   </div>
                </div>
@@ -55,7 +77,9 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen }) => {
             <ModalFooter>
                <div className="w-full justify-end flex flex-wrap">
                   <Button
-                     onClick={() => {}}
+                      onClick={() => {
+                        selectedData?._id ? editHandler() : addHandler();
+                     }}
                      type="submit"
                      className={`max-sm:w-full bg-green-900 text-green-100`}
                   >

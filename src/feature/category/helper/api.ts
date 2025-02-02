@@ -35,3 +35,22 @@ export const editOutgoApi = async (OutgoId: string, editOutgoData: any) => {
       editOutgoData
    );
 };
+
+export const getBoxesApi = async () => {
+    return Axiose.get(`${import.meta.env.VITE_BASE_URL}boxes`);
+ };
+
+ export const addBoxesApi = async (addBoxesData: any) => {
+    return Axiose.post(
+       `${import.meta.env.VITE_BASE_URL}boxes`,
+       addBoxesData
+    );
+ };
+
+ export const editBoxesApi = async (boxId: string, editBoxData: any) => {
+    return Axiose.put(
+       `${import.meta.env.VITE_BASE_URL}boxes/${boxId}`,
+       editBoxData
+    );
+ };
+

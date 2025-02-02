@@ -1,6 +1,10 @@
 export interface IUpsertBoxesModal {
    open: boolean;
    setOpen: Function;
+   selectedData:IIncomeList | undefined;
+   setData:Function,
+   addHandler:Function,
+   editHandler:Function,
 }
 
 export interface IUpsertCategoryModal {
@@ -19,4 +23,5 @@ export interface IIncomeList {
    createdAt: string;
    updatedAt: string;
    __v: number;
+   initialAmount?:string
 }
