@@ -18,7 +18,6 @@ const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({
    addHandler,
    editHandler
 }) => {
-   console.log(selectedData, 'selecteddata from modal');
    return (
       <Modal
          backdrop="opaque"
