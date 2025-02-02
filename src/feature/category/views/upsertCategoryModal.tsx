@@ -30,7 +30,7 @@ const UpsertCategoryModal: FC<IUpsertCategoryModal> = ({
       >
          <ModalContent>
             <ModalHeader className="text-base font-bold  text-gray-700">
-               مدیریت ورودی/خروجی
+               مدیریت {type === 'income' ? 'ورودی' : 'خروجی'}
             </ModalHeader>
             <ModalBody className="w-full">
                <div className="w-full flex flex-wrap">
