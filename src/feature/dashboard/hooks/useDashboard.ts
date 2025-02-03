@@ -7,10 +7,10 @@ import {
 } from '../helpers/controller';
 
 export const useDashboard = () => {
-   const [totalAmount, setTotalAmount] = useState();
-   const [allTransaction, setAllTransaction] = useState();
-   const [totalTransaction, setTotalTransaction] = useState();
-   const [topwithdrawal, setTopwithdrawal] = useState();
+   const [totalAmount, setTotalAmount] = useState<any>();
+   const [allTransaction, setAllTransaction] = useState<any>();
+   const [totalTransaction, setTotalTransaction] = useState<any>();
+   const [topwithdrawal, setTopwithdrawal] = useState<any>();
 
    useEffect(() => {
       getTotalAmountOfMoneyController(setTotalAmount);
