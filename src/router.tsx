@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import DashboardIndex from './feature/dashboard/DashboardIndex';
+import DashboardIndex from './feature/dashboard/views/DashboardIndex';
 import ProfileIndex from './feature/profile/views/profileIndex';
 import LoginIndex from './feature/login/views/LoginIndex';
 import SignupIndex from './feature/signup/views/SignupIndex';
