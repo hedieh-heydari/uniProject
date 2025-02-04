@@ -24,6 +24,7 @@ import DeleteWithdrawalModal from './DeleteWithdrawalModal';
 import UpsertWithdrawalModal from './UpsertWithdrawalModal';
 import { IWithdrawal } from '../interfaces/WithdrawalInterface';
 import NumberSeparator from '../../../utils/NumberSeprator';
+import EmptyStateComponent from '../../../components/EmptyStateComponent';
 
 const WithdrawalIndex = () => {
    const {
@@ -91,18 +92,18 @@ const WithdrawalIndex = () => {
             <TableBody
                loadingContent={<Spinner />}
                isLoading={false}
-               emptyContent={true ? ' ' : 'اطلاعات وارد شده وجود ندارد.'}
+               emptyContent={<EmptyStateComponent/>}
             >
                {
                   withdrwalaData && withdrwalaData.map((i:IWithdrawal, index:number)=>{
                      return(
                         <TableRow className="bordertabel" key={index}>
                         <TableCell>{index +1} </TableCell>
-                        <TableCell dir="ltr"> {NumberSeparator(i.amount)} </TableCell>
+                        <TableCell> {NumberSeparator(i.amount)} تومان </TableCell>
                         <TableCell dir="ltr">{i.date&& i.date.split('T')[0]}</TableCell>
                         <TableCell dir="ltr"> {i.fromBox} </TableCell>
                         <TableCell dir="ltr">{i.toBox}</TableCell>
-                        <TableCell dir="ltr">{i.description}</TableCell>
+                        <TableCell dir="ltr">{i.description? i.description : '-'}</TableCell>
                         <TableCell className="flex justify-end">
                            <Dropdown
                               placement="bottom-start"

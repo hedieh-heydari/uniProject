@@ -46,3 +46,19 @@ body {
  .transparent-white{
    background: rgba(255, 255, 255, .5);
  }
+ *::-webkit-scrollbar {
+   width: 2px;
+ }
+ *::-webkit-scrollbar:hover {
+   width: 5px;
+ }
+
+ *::-webkit-scrollbar-track {
+   background: transparent;
+ }
+
+ *::-webkit-scrollbar-thumb {
+   background-color: #d2d6da;
+   border-radius: 10px;
+   border: 1px solid transparent;
+ }

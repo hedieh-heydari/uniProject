@@ -37,10 +37,29 @@ export const getTotalTransactionController = (
       });
 };
 
+function getRandomHexColor() {
+   const letters = '0123456789ABCDEF';
+   let color = '#';
+   for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+   }
+   return color;
+}
+
 export const getTopwithdrawalController = (setTopwithdrawal: Function) => {
    getTopwithdrawalApi()
       .then((res: any) => {
-         setTopwithdrawal(res.data.topWithdrawals);
+         // setTopwithdrawal(res.data.topWithdrawals);
+
+         // response.data.response.chart_data.map((i: IReasonsChart, index: number) => {
+         //    return { ...i, color: reasonscolor[index].color };
+         //  })
+
+         setTopwithdrawal(
+            res.data.topWithdrawals.map((i: any) => {
+               return { ...i, color: getRandomHexColor() };
+            })
+         );
       })
       .catch((err: any) => {
          console.log(err);

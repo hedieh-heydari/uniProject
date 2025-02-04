@@ -24,6 +24,7 @@ import DeleteDepositeModal from './DeleteDepositeModal';
 import UpsertDepositModal from './UpsertDepositModal';
 import { IDeposit } from '../interface/DepositInterface';
 import NumberSeparator from '../../../utils/NumberSeprator';
+import EmptyStateComponent from '../../../components/EmptyStateComponent';
 
 const DepositIndex = () => {
    const {
@@ -94,22 +95,22 @@ const DepositIndex = () => {
             <TableBody
                loadingContent={<Spinner />}
                isLoading={false}
-               emptyContent={true ? ' ' : 'اطلاعات وارد شده وجود ندارد.'}
+               emptyContent={<EmptyStateComponent/>}
             >
                {depositeData &&
                   depositeData.map((i: IDeposit, index: number) => {
                      return (
                         <TableRow className="bordertabel">
                            <TableCell>{index + 1}</TableCell>
-                           <TableCell dir="ltr">
-                              {NumberSeparator(i.amount)}
+                           <TableCell>
+                             {NumberSeparator(i.amount)} تومان
                            </TableCell>
                            <TableCell dir="ltr">
                               {i.date && i.date.split('T')[0]}
                            </TableCell>
                            <TableCell dir="ltr"> {i.fromBox} </TableCell>
                            <TableCell dir="ltr">{i.toBox}</TableCell>
-                           <TableCell dir="ltr">{i.description}</TableCell>
+                           <TableCell dir="ltr">{i.description? i.description : '-'}</TableCell>
                            <TableCell className="flex justify-end">
                               <Dropdown
                                  placement="bottom-start"
