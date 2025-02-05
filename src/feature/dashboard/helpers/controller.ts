@@ -12,6 +12,7 @@ export const getTotalAmountOfMoneyController = (setTotalAmount: Function) => {
       })
       .catch((err: any) => {
          console.log(err);
+         setTotalAmount(0); // Set a fallback value to prevent breaking the UI
       });
 };
 
@@ -22,6 +23,7 @@ export const getAllTransactionController = (setAllTransaction: Function) => {
       })
       .catch((err: any) => {
          console.log(err);
+         setAllTransaction([]); // Set a fallback empty array if data is not available
       });
 };
 
@@ -34,6 +36,7 @@ export const getTotalTransactionController = (
       })
       .catch((err: any) => {
          console.log(err);
+         setTotalTransaction(null); // Set null to indicate no data
       });
 };
 
@@ -49,11 +52,6 @@ function getRandomHexColor() {
 export const getTopwithdrawalController = (setTopwithdrawal: Function) => {
    getTopwithdrawalApi()
       .then((res: any) => {
-         // setTopwithdrawal(res.data.topWithdrawals);
-
-         // response.data.response.chart_data.map((i: IReasonsChart, index: number) => {
-         //    return { ...i, color: reasonscolor[index].color };
-         //  })
 
          setTopwithdrawal(
             res.data.topWithdrawals.map((i: any) => {
@@ -63,5 +61,7 @@ export const getTopwithdrawalController = (setTopwithdrawal: Function) => {
       })
       .catch((err: any) => {
          console.log(err);
+         setTopwithdrawal([]); // Set fallback empty array in case of no data
       });
 };
+

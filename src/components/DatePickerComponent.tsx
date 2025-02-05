@@ -2,7 +2,7 @@ import CalendarIcon from '../assets/icons/CalendarIcon';
 import persian from 'react-date-object/calendars/persian';
 import persian_fa from 'react-date-object/locales/persian_fa';
 import DatePick, { DateObject } from 'react-multi-date-picker';
-// import type { Value } from 'react-multi-date-picker';
+
 interface IDatePicker {
    wrapperClassName?: string;
    value: string;
@@ -22,6 +22,7 @@ interface IDatePicker {
    onlyMonthPicker?: any;
    format?: any;
    portal?: boolean;
+   disabled?:boolean;
 }
 export default function DatePickerComponent({
    value,
@@ -33,7 +34,9 @@ export default function DatePickerComponent({
    onlyYearPicker,
    onlyMonthPicker,
    format,
-   portal = true
+   portal = true,
+   disabled = false,
+   
 }: IDatePicker) {
    const today = new DateObject({ calendar: persian, locale: persian_fa });
    return (
@@ -55,6 +58,7 @@ export default function DatePickerComponent({
                onFocusedDateChange={onFocusedDateChange}
                calendar={persian}
                locale={persian_fa}
+               disabled={disabled}
                inputClass=" w-full h-full cursor-pointer bg-transparent focus:outline-none px-2 placeholder:text-sm placeholder:text-gray-600"
             />
             <CalendarIcon className="w-6 h-6 ml-2 stroke-gray-600 " />

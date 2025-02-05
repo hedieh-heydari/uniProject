@@ -18,6 +18,8 @@ export const useProfile = () => {
       _id: ''
    });
 
+   console.log(profileData)
+
    const getProfileHandler = () => {
       uId && getProfileController(uId, setProfileData);
    };

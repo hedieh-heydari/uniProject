@@ -12,11 +12,13 @@ export const loginController = (
          localStorage.setItem('token', res.data.token);
          localStorage.setItem('userId', res.data.user.id)
          navigate('/');
-         toast.success('خوش آمدید.');
+         toast.success('خوش آمدید.',{ className: 'toast-custom' });
          Dispatch(profileReduce(res.data.user));
+         window.location.reload();
       })
       .catch((err: any) => {
          console.log(err);
-         toast.error('خطایی رخ داده است.');
-      })
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
+      });
 };

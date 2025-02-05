@@ -52,6 +52,7 @@ const ProfileIndex = () => {
                            firstName: e.target.value
                         });
                      }}
+                     disabled={profileData.completedProfile}  
                   />
                </div>
                <div className="w-full md:w-1/2 mb-4 md:pr-2">
@@ -69,6 +70,7 @@ const ProfileIndex = () => {
                            lastName: e.target.value
                         });
                      }}
+                     disabled={profileData.completedProfile} 
                   />
                </div>
                <div className="w-full md:w-1/2 mb-4 md:pl-2">
@@ -80,12 +82,7 @@ const ProfileIndex = () => {
                      type="text"
                      value={profileData.nationalCode}
                      className={`w-full h-10 rounded-14 border mt-2 focus:outline-none px-3 text-gray-800`}
-                     onChange={(e: any) => {
-                        setProfileData({
-                           ...profileData,
-                           nationalCode: e.target.value
-                        });
-                     }}
+                     disabled
                   />
                </div>
                <div className="w-full md:w-1/2 mb-4 md:pr-2">
@@ -104,6 +101,7 @@ const ProfileIndex = () => {
                               .format()
                         });
                      }}
+                     disabled={profileData.completedProfile}  
                   />
                </div>
                <div className="w-full md:w-1/2 mb-4 md:pl-2">
@@ -121,6 +119,7 @@ const ProfileIndex = () => {
                            mobile: e.target.value
                         });
                      }}
+                     disabled={profileData.completedProfile}  // Disable input if profile is completed
                   />
                </div>
                <div className="w-full md:w-1/2 mb-4 md:pr-2">

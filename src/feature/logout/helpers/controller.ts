@@ -7,10 +7,13 @@ export const logoutController = (
    logoutApi()
       .then(() => {
          localStorage.removeItem('token');
+         localStorage.removeItem('userId');
          navigate('/login');
+         window.location.reload();
       })
       .catch((err: any) => {
          console.log(err);
-         toast.error('خطایی رخ داده است.');
-      })
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
+      });
 };

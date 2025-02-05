@@ -32,13 +32,15 @@ export const addIncomeController = (
    formData.append('title', addIncomeData.title);
    addIncomeApi(formData)
       .then(() => {
-         toast.success('با موفقیت افزوده شد.');
+         toast.success('با موفقیت افزوده شد.',{ className: 'toast-custom' });
          setSelectedIncome();
          setOpenUpsertModal(false);
          getIncomeHandler();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };
 export const editIncomeController = (
@@ -52,13 +54,15 @@ export const editIncomeController = (
    formData.append('title', editIncomeData.title);
    editIncomeApi(editIncomeData._id, formData)
       .then(() => {
-         toast.success('با موفقیت ویرایش شد.');
+         toast.success('با موفقیت ویرایش شد.',{ className: 'toast-custom' });
          getIncomeHandler();
          setOpenUpsertModal(false);
          setSelectedIncome();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };
 
@@ -83,13 +87,15 @@ export const addOutgoController = (
    formData.append('title', addOutgoData.title);
    addOutgoApi(formData)
       .then(() => {
-         toast.success('با موفقیت افزوده شد.');
+         toast.success('با موفقیت افزوده شد.',{ className: 'toast-custom' });
          setSelectedOutgo();
          setOpenUpsertModal(false);
          getOutgoHandler();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };
 
@@ -104,13 +110,15 @@ export const editOutgoController = (
    formData.append('title', editOutgoData.title);
    editOutgoApi(editOutgoData._id, formData)
       .then(() => {
-         toast.success('با موفقیت ویرایش شد.');
+         toast.success('با موفقیت ویرایش شد.',{ className: 'toast-custom' });
          getOutgoHandler();
          setOpenUpsertModal(false);
          setSelectedOutgo();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };
 
@@ -136,13 +144,15 @@ export const addBoxController = (
    formData.append('initialAmount', addBoxData.initialAmount);
    addBoxesApi(formData)
       .then(() => {
-         toast.success('با موفقیت افزوده شد.');
+         toast.success('با موفقیت افزوده شد.',{ className: 'toast-custom' });
          setSelectedBox();
          setOpenUpsertModal(false);
          getBoxesHandler();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };
 
@@ -159,12 +169,14 @@ export const editBoxesController = (
 
    editBoxesApi(editBoxesData._id, formData)
       .then(() => {
-         toast.success('با موفقیت ویرایش شد.');
+         toast.success('با موفقیت ویرایش شد.',{ className: 'toast-custom' });
          getBoxesHandler();
          setOpenUpsertModal(false);
          setSelectedBox();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };

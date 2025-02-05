@@ -24,13 +24,15 @@ export const addwithdrawalsController = (
 ) => {
    addWithdrawalApi(addWithdrawalData)
       .then(() => {
-         toast.success('با موفقیت افزوده شد.');
+         toast.success('با موفقیت افزوده شد.',{ className: 'toast-custom' });
          setSelectedWithdraw();
          setOpenUpsertModal(false);
          getWithdrawalHandler();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };
 
@@ -42,13 +44,15 @@ export const editwithdrawalsController = (
 ) => {
    editWithdrawalApi(editWithdrawalData._id, editWithdrawalData)
       .then(() => {
-         toast.success('با موفقیت ویرایش شد.');
+         toast.success('با موفقیت ویرایش شد.',{ className: 'toast-custom' });
          getWithdrawalHandler();
          setOpenUpsertModal(false);
          setSelectedWithdraw();
       })
-      .catch(() => {
-         toast.error('خطایی رخ داده است.');
+      .catch((err: any) => {
+         console.log(err);
+         const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
+         toast.error(errorMessage, { className: 'toast-custom' });
       });
 };
 
