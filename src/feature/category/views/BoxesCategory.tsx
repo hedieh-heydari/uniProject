@@ -32,7 +32,7 @@ const BoxesCategory = () => {
                      icon={
                         i.logo ? (
                            <img
-                              src={`http://localhost:5000/uploads/${i.logo}`}
+                              src={`https://financialback.liara.run/uploads/${i.logo}`}
                            />
                         ) : (
                            <WalletExportIcon className="w-5 h-5" />
