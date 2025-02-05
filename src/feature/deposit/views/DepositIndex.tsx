@@ -39,7 +39,6 @@ const DepositIndex = () => {
       editDepositHandler,
       incomeSelect,
       selectedDeposit,
-      setDepositData,
       setSelectedDeposit
    } = useDeposit();
 
