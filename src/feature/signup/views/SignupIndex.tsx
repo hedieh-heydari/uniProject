@@ -5,10 +5,10 @@ const SignupIndex = () => {
    const { navigate, setSignupData, signupData, signupHandler, loading } = useSignup();
    return (
       <>
-         <div className="green-radial min-w-full min-h-screen flex justify-center relative">
-            <div className="flex justify-center items-center">
+         <div className="green-radial min-w-full min-h-screen flex justify-center items-center">
+          
                <form
-                  className="rounded-14 px-12 py-8 transparent-white  w-[450px] flex flex-col items-center"
+                  className="rounded-14 max-sm:mx-4 px-12 py-8 transparent-white  w-[450px] flex flex-col items-center"
                   onSubmit={(e) => {
                      e.preventDefault();
                      signupHandler()
@@ -90,7 +90,7 @@ const SignupIndex = () => {
                      ورود به پنل
                   </span>
                </form>
-            </div>
+            
          </div>
       </>
    );
