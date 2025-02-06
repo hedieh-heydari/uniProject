@@ -9,6 +9,7 @@ import {
 export const useBoxesCategory = () => {
    const [openUpsertModal, setOpenUpsertModal] = useState<boolean>(false);
    const [disableBtn , setDisableBtn] = useState<boolean>(false)
+   const [loading, setLoading] = useState<boolean>(true)
    const [boxesData, setBoxesData] = useState<IIncomeList[]>([
       {
          _id: '',
@@ -23,7 +24,7 @@ export const useBoxesCategory = () => {
    const [selectedBox, setSelectedBox] = useState<IIncomeList>();
 
    const getBoxesHandler = () => {
-      getBoxesController(setBoxesData);
+      getBoxesController(setBoxesData, setLoading);
    };
 
    const addBoxesHandler = () => {
@@ -57,6 +58,7 @@ export const useBoxesCategory = () => {
       setSelectedBox,
       addBoxesHandler,
       editBoxesHandler,
-      disableBtn
+      disableBtn, 
+      loading
    };
 };

@@ -11,13 +11,15 @@ import {
    getOutgoApi
 } from './api';
 
-export const getIncomeController = (setIncomeData: Function) => {
+export const getIncomeController = (setIncomeData: Function, setLoading:Function) => {
    GetIncomeApi()
       .then((res: any) => {
          setIncomeData(res.data.categories);
+         setLoading(false)
       })
       .catch((err: any) => {
          console.log(err);
+         setLoading(false)
       });
 };
 
@@ -74,13 +76,15 @@ export const editIncomeController = (
       });
 };
 
-export const getOutgoController = (setOutgoData: Function) => {
+export const getOutgoController = (setOutgoData: Function,setLoading:Function) => {
    getOutgoApi()
       .then((res: any) => {
          setOutgoData(res.data.categories);
+         setLoading(false)
       })
       .catch((err: any) => {
          console.log(err);
+         setLoading(false)
       });
 };
 
@@ -138,13 +142,15 @@ export const editOutgoController = (
       });
 };
 
-export const getBoxesController = (setBoxesData: Function) => {
+export const getBoxesController = (setBoxesData: Function,setLoading:Function) => {
    getBoxesApi()
       .then((res: any) => {
          setBoxesData(res.data.boxes);
+         setLoading(false)
       })
       .catch((err: any) => {
          console.log(err);
+         setLoading(false)
       });
 };
 

@@ -1,3 +1,4 @@
+import { Spinner } from '@nextui-org/react';
 import WalletExportIcon from '../../../assets/icons/WalletExportIcon';
 import AddNewComponent from '../../../components/AddNewComponent';
 import CardsComponent from '../../../components/CardsComponent';
@@ -14,39 +15,46 @@ const BoxesCategory = () => {
       selectedBox,
       setSelectedBox,
       addBoxesHandler,
-      editBoxesHandler, 
-      disableBtn
+      editBoxesHandler,
+      disableBtn,
+      loading
    } = useBoxesCategory();
    return (
       <div className="flex flex-wrap w-full">
-         <AddNewComponent
-            onclickFunction={() => {
-               setOpenUpsertModal(true);
-            }}
-         />
-         {boxesData &&
-            boxesData.map((i: IIncomeList, index: number) => {
-               return (
-                  <CardsComponent
-                     key={index}
-                     categoryName={i.title}
-                     icon={
-                        i.logo ? (
-                           <img
-                              src={`https://financialback.liara.run/uploads/${i.logo}`}
-                           />
-                        ) : (
-                           <WalletExportIcon className="w-5 h-5" />
-                        )
-                     }
-                     editFunction={() => {
-                        setSelectedBox(i);
-                        setOpenUpsertModal(true);
-                     }}
-                     amount={`مبلغ: ${NumberSeparator(i.initialAmount)}`}
-                  />
-               );
-            })}
+         {loading ? (
+            <Spinner size="lg" />
+         ) : (
+            <>
+               <AddNewComponent
+                  onclickFunction={() => {
+                     setOpenUpsertModal(true);
+                  }}
+               />
+               {boxesData &&
+                  boxesData.map((i: IIncomeList, index: number) => {
+                     return (
+                        <CardsComponent
+                           key={index}
+                           categoryName={i.title}
+                           icon={
+                              i.logo ? (
+                                 <img
+                                    src={`https://financialback.liara.run/uploads/${i.logo}`}
+                                 />
+                              ) : (
+                                 <WalletExportIcon className="w-5 h-5" />
+                              )
+                           }
+                           editFunction={() => {
+                              setSelectedBox(i);
+                              setOpenUpsertModal(true);
+                           }}
+                           amount={`مبلغ: ${NumberSeparator(i.initialAmount)}`}
+                        />
+                     );
+                  })}
+            </>
+         )}
 
          <UpsertBoxesModal
             open={openUpsertModal}

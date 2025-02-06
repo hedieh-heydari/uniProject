@@ -1,3 +1,4 @@
+import { Spinner } from '@nextui-org/react';
 import WalletExportIcon from '../../../assets/icons/WalletExportIcon';
 import AddNewComponent from '../../../components/AddNewComponent';
 import CardsComponent from '../../../components/CardsComponent';
@@ -14,37 +15,44 @@ const IncomeCategory = () => {
       setSelectedIncome,
       addIncomeHandler,
       editIncomeHandler,
-      disableBtn
+      disableBtn,
+      loading
    } = useIncomeCategory();
    return (
       <div className="flex flex-wrap w-full">
-         <AddNewComponent
-            onclickFunction={() => {
-               setOpenUpsertModal(true);
-            }}
-         />
-         {incomeData &&
-            incomeData.map((i: IIncomeList, index: number) => {
-               return (
-                  <CardsComponent
-                     key={index}
-                     categoryName={i.title}
-                     icon={
-                        i.logo ? (
-                           <img
-                              src={`https://financialback.liara.run/uploads/${i.logo}`}
-                           />
-                        ) : (
-                           <WalletExportIcon className="w-5 h-5" />
-                        )
-                     }
-                     editFunction={() => {
-                        setSelectedIncome(i);
-                        setOpenUpsertModal(true);
-                     }}
-                  />
-               );
-            })}
+         {loading ? (
+            <Spinner size="lg" />
+         ) : (
+            <>
+               <AddNewComponent
+                  onclickFunction={() => {
+                     setOpenUpsertModal(true);
+                  }}
+               />
+               {incomeData &&
+                  incomeData.map((i: IIncomeList, index: number) => {
+                     return (
+                        <CardsComponent
+                           key={index}
+                           categoryName={i.title}
+                           icon={
+                              i.logo ? (
+                                 <img
+                                    src={`https://financialback.liara.run/uploads/${i.logo}`}
+                                 />
+                              ) : (
+                                 <WalletExportIcon className="w-5 h-5" />
+                              )
+                           }
+                           editFunction={() => {
+                              setSelectedIncome(i);
+                              setOpenUpsertModal(true);
+                           }}
+                        />
+                     );
+                  })}
+            </>
+         )}
 
          <UpsertCategoryModal
             open={openUpsertModal}

@@ -8,7 +8,8 @@ import {
 
 export const useIncomeCategory = () => {
    const [openUpsertModal, setOpenUpsertModal] = useState<boolean>(false);
-   const [disableBtn, setDisableBtn] = useState<boolean>(false)
+   const [disableBtn, setDisableBtn] = useState<boolean>(false);
+   const [loading, setLoading] = useState<boolean>(true);
    const [incomeData, setIncomeData] = useState<IIncomeList[]>([
       {
          _id: '',
@@ -23,7 +24,7 @@ export const useIncomeCategory = () => {
    const [selectedIncome, setSelectedIncome] = useState<IIncomeList>();
 
    const getIncomeHandler = () => {
-      getIncomeController(setIncomeData);
+      getIncomeController(setIncomeData, setLoading);
    };
 
    const addIncomeHandler = () => {
@@ -31,12 +32,16 @@ export const useIncomeCategory = () => {
          selectedIncome,
          setSelectedIncome,
          setOpenUpsertModal,
-         getIncomeHandler, 
+         getIncomeHandler,
          setDisableBtn
       );
    };
    const editIncomeHandler = () => {
-      editIncomeController(selectedIncome, getIncomeHandler,setOpenUpsertModal,setSelectedIncome, 
+      editIncomeController(
+         selectedIncome,
+         getIncomeHandler,
+         setOpenUpsertModal,
+         setSelectedIncome,
          setDisableBtn
       );
    };
@@ -52,8 +57,9 @@ export const useIncomeCategory = () => {
       setIncomeData,
       selectedIncome,
       setSelectedIncome,
-      addIncomeHandler, 
-      editIncomeHandler, 
-      disableBtn
+      addIncomeHandler,
+      editIncomeHandler,
+      disableBtn,
+      loading
    };
 };

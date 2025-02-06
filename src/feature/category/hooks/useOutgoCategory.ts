@@ -8,7 +8,8 @@ import {
 
 export const useOutgoCategory = () => {
    const [openUpsertModal, setOpenUpsertModal] = useState<boolean>(false);
-   const [ disableBtn, setDisableBtn] = useState<boolean>(false)
+   const [disableBtn, setDisableBtn] = useState<boolean>(false);
+   const [loading, setLoading] = useState<boolean>(true);
    const [outgoData, setOutgoData] = useState<IIncomeList[]>([
       {
          _id: '',
@@ -23,7 +24,7 @@ export const useOutgoCategory = () => {
    const [selectedOutgo, setSelectedOutgo] = useState<IIncomeList>();
 
    const getOutgoHandler = () => {
-      getOutgoController(setOutgoData);
+      getOutgoController(setOutgoData, setLoading);
    };
 
    const addOutgoHandler = () => {
@@ -31,7 +32,8 @@ export const useOutgoCategory = () => {
          selectedOutgo,
          setSelectedOutgo,
          setOpenUpsertModal,
-         getOutgoHandler, setDisableBtn
+         getOutgoHandler,
+         setDisableBtn
       );
    };
    const editOutgoHandler = () => {
@@ -39,7 +41,8 @@ export const useOutgoCategory = () => {
          selectedOutgo,
          getOutgoHandler,
          setOpenUpsertModal,
-         setSelectedOutgo, setDisableBtn
+         setSelectedOutgo,
+         setDisableBtn
       );
    };
 
@@ -55,7 +58,8 @@ export const useOutgoCategory = () => {
       editOutgoHandler,
       selectedOutgo,
       setSelectedOutgo,
-      getOutgoHandler, 
-      disableBtn
+      getOutgoHandler,
+      disableBtn,
+      loading
    };
 };
