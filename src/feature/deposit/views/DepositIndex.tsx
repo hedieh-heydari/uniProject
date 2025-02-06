@@ -94,7 +94,7 @@ const DepositIndex = () => {
                      <TableColumn key="register-date">به حساب </TableColumn>
                      <TableColumn key="description">توضیحات</TableColumn>
                      <TableColumn
-                        key="description"
+                        key="action"
                         className="!rounded-r-none rounded-l-lg flex justify-end items-center"
                      >
                         عملیات
@@ -108,7 +108,7 @@ const DepositIndex = () => {
                      {depositeData &&
                         depositeData.map((i: IDeposit, index: number) => {
                            return (
-                              <TableRow className="bordertabel">
+                              <TableRow className="bordertabel" key={index}>
                                  <TableCell>{index + 1}</TableCell>
                                  <TableCell>
                                     {NumberSeparator(i.amount)} تومان

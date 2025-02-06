@@ -93,7 +93,7 @@ const WithdrawalIndex = () => {
                      <TableColumn key="register-date">به حساب </TableColumn>
                      <TableColumn key="description">توضیحات</TableColumn>
                      <TableColumn
-                        key="description"
+                        key="action"
                         className="!rounded-r-none rounded-l-lg flex justify-end items-center"
                      >
                         عملیات

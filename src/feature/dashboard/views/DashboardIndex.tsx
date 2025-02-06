@@ -36,17 +36,17 @@ const DashboardIndex = () => {
             <Spinner size="lg"  color='success'/>
          ) : (
             <>
-               <CardHeader className="text-asiatech-gray-800 flex items-center justify-between">
-                  <div className="flex items-center max-sm:w-full max-sm:mb-2">
-                     <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-indigo-600" />
-                     <span className="font-bold text-base text-gray-800 max-sm:text-sm">
+               
+               <div className="w-full flex flex-wrap justify-between">
+                  <div className="w-full sm:w-4/12 sm:pl-2 max-sm:mb-4">
+                  
+                     <div className="w-full min-h-full p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                     <div className="flex items-center max-sm:w-full max-sm:mb-2 mt-2 mb-4">
+                     <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-green-900" />
+                     <span className="text-base text-gray-600 max-sm:text-sm">
                         مدیریت مالی در یک نگاه
                      </span>
                   </div>
-               </CardHeader>
-               <div className="w-full flex flex-wrap justify-between">
-                  <div className="w-full sm:w-4/12 sm:pl-2 max-sm:mb-4">
-                     <div className="w-full min-h-full p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                         <div className="border-l-4 border-green-500 p-4 mb-4 cursor-pointer hover:bg-green-50"
                         onClick={()=>{
                            navigate('/category?page=boxes')
@@ -120,7 +120,8 @@ const DashboardIndex = () => {
                      <div className="w-full min-h-full p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                         {topwithdrawal && topwithdrawal.length > 0 ? (
                            <>
-                              <p className="m-2 text-lg font-semibold text-gray-800">
+                              <p className="m-2 text-base text-gray-600 flex">
+                              <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-green-900" />
                                  برای چه دسته بندی بیشتر هزینه کرده اید؟
                               </p>
                               <div className="w-full flex flex-wrap-reverse items-center justify-between">
@@ -158,9 +159,9 @@ const DashboardIndex = () => {
 
                <div className="w-full mt-6">
                   <div className="p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                     <p className="flex items-center m-2 mb-4 text-gray-600 text-lg font-medium">
+                     <p className="flex items-center m-2 mb-4 text-gray-600 text-base">
                         <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-gray-700" />
-                        <span className="pt-1 text-gray-700">
+                        <span className="pt-1 text-gray-600">
                            نگاهی کلی به لیست تراکنش ها داشته باشید.
                         </span>
                      </p>
@@ -212,7 +213,7 @@ const DashboardIndex = () => {
                                          <TableCell>{index + 1} </TableCell>
                                          <TableCell>
                                             {i.amount
-                                               ? NumberSeparator(i.amount)
+                                               ?`${NumberSeparator(i.amount)} تومان`
                                                : '0 تومان'}
                                          </TableCell>
                                          <TableCell dir="ltr">
