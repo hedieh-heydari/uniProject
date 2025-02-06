@@ -10,7 +10,7 @@ const ProfileIndex = () => {
    const { profileData, setProfileData, updateProfileHandler, loading } =
       useProfile();
    return (
-      <Card className="px-4 py-6 my-6 overflow-visible ">
+      <Card className="px-4 py-6 my-6 overflow-visible bg-gradient-to-r from-green-50 to-[#ddece7]">
          {loading ? (
             <Spinner size="lg" />
          ) : (

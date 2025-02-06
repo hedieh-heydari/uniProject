@@ -43,7 +43,7 @@ const DepositIndex = () => {
    } = useDeposit();
 
    return (
-      <Card className="px-4 py-6 my-6 overflow-visible">
+      <Card className="px-4 py-6 my-6 overflow-visible bg-gradient-to-r from-green-50 to-[#ddece7]">
          <CardHeader className="flex max-sm:flex-wrap justify-between p-0 mb-6 text-gray-700">
             <div className="flex items-center max-sm:w-full max-sm:mb-2">
                <WalletImportIcon className="w-6 h-6 ml-2" />
