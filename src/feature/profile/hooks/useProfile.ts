@@ -4,7 +4,7 @@ import { IProfileInterface } from '../interface/profileInterface';
 
 export const useProfile = () => {
    const uId = localStorage.getItem('userId');
-   const [loading, setLoading] = useState<boolean>(false)
+   const [loading, setLoading] = useState<boolean>(true)
    const [profileData, setProfileData] = useState<IProfileInterface>({
       birthDate: '',
       completedProfile: false,

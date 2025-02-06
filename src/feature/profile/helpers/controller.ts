@@ -7,7 +7,6 @@ export const getProfileController = (
    setProfileData: Function,
    setLoading:Function
 ) => {
-   setLoading(true)
    GetProfileApi(userId)
       .then((res: any) => {
          setProfileData(res.data.user);
