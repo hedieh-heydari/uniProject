@@ -26,7 +26,8 @@ const DashboardIndex = () => {
       totalAmount,
       totalTransaction,
       loading,
-      option
+      option, 
+      navigate
    } = useDashboard();
 
    return (
@@ -46,7 +47,11 @@ const DashboardIndex = () => {
                <div className="w-full flex flex-wrap justify-between">
                   <div className="w-full sm:w-4/12 sm:pl-2 max-sm:mb-4">
                      <div className="w-full min-h-full p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                        <div className="border-l-4 border-green-500 p-4 mb-4">
+                        <div className="border-l-4 border-green-500 p-4 mb-4 cursor-pointer hover:bg-green-50"
+                        onClick={()=>{
+                           navigate('/category?page=boxes')
+                        }}
+                        >
                            <div className="flex justify-between">
                               <div className="flex items-center">
                                  <CardExchangeIcon className="w-5 h-5 text-green-600" />
@@ -63,7 +68,11 @@ const DashboardIndex = () => {
                            </div>
                         </div>
 
-                        <div className="border-l-4 border-yellow-500 p-4 mb-4">
+                        <div className="border-l-4 border-yellow-500 p-4 mb-4 cursor-pointer hover:bg-yellow-50"
+                        onClick={()=>{
+                           navigate('/withdrawal')
+                        }}
+                        >
                            <div className="flex justify-between">
                               <div className="flex items-center">
                                  <WalletExportIcon className="w-5 h-5 text-yellow-600" />
@@ -82,7 +91,11 @@ const DashboardIndex = () => {
                            </div>
                         </div>
 
-                        <div className="border-l-4 border-blue-500 p-4 mb-4">
+                        <div className="border-l-4 border-blue-500 p-4 mb-4 cursor-pointer hover:bg-blue-50"
+                        onClick={()=>{
+                           navigate('/deposit')
+                        }}
+                        >
                            <div className="flex justify-between">
                               <div className="flex items-center">
                                  <WalletImportIcon className="w-5 h-5 text-blue-600" />
