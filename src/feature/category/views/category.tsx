@@ -3,39 +3,10 @@ import CardExchangeIcon from '../../../assets/icons/CardExchangeIcon';
 import IncomeCategory from './IncomeCategory';
 import OutgoCategory from './OutgoCategory';
 import BoxesCategory from './BoxesCategory';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useCategory } from '../hooks/useCategory';
 
 const CategoryIndex = () => {
-   const navigate = useNavigate();
-   const location = useLocation();
-
-   console.log(location);
-   const page = location.search.split('=')[1];
-   const [selectedTab, setSelectedTab] = useState<string>(page);
-
-   useEffect(() => {
-      if (page) {
-         setSelectedTab(page);
-      } else {
-         setSelectedTab('import');
-      }
-   }, [page]);
-
-   const tabData = [
-      {
-         key: 'import',
-         title: 'ورودی'
-      },
-      {
-         key: 'export',
-         title: 'خروجی'
-      },
-      {
-         key: 'boxes',
-         title: 'صندوق‌ها'
-      }
-   ];
+   const { navigate, selectedTab, tabData } = useCategory();
 
    return (
       <>
