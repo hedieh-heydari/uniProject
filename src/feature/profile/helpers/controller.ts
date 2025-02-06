@@ -11,6 +11,7 @@ export const getProfileController = (
       .then((res: any) => {
          setProfileData(res.data.user);
          setLoading(false)
+         localStorage.setItem('name', res.data.user.firstName)
       })
       .catch((err: any) => {
          console.log(err);

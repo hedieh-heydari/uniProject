@@ -8,6 +8,7 @@ export const logoutController = (
       .then(() => {
          localStorage.removeItem('token');
          localStorage.removeItem('userId');
+         localStorage.removeItem('name')
          navigate('/login');
          window.location.reload();
       })

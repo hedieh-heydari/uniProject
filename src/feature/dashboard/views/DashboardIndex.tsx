@@ -26,31 +26,40 @@ const DashboardIndex = () => {
       totalAmount,
       totalTransaction,
       loading,
-      option, 
+      option,
       navigate
    } = useDashboard();
+
 
    return (
       <Card className="px-4 py-6 my-6 overflow-visible  bg-[#EFF9F0] shadow-lg rounded-xl">
          {loading ? (
-            <Spinner size="lg"  color='success'/>
+            <Spinner size="lg" color="success" />
          ) : (
             <>
-               
                <div className="w-full flex flex-wrap justify-between">
-                  <div className="w-full sm:w-4/12 sm:pl-2 max-sm:mb-4">
-                  
-                     <div className="w-full min-h-full p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                     <div className="flex items-center max-sm:w-full max-sm:mb-2 mt-2 mb-4">
-                     <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-green-900" />
-                     <span className="text-base text-gray-600 max-sm:text-sm">
-                        مدیریت مالی در یک نگاه
-                     </span>
+                  <div className="w-full min-h-full sm:w-4/12 sm:pl-2 max-sm:mb-4">
+                  <div className='bg-white mb-4 p-4 rounded-lg shadow-md'> 
+                     {
+                        localStorage.getItem('name') && localStorage.getItem('name') !== 'undefined' ? 
+                        `${localStorage.getItem('name')} عزیز، خوش آمدید!`
+                        :
+                        '    کاربر گرامی خوش آمدید!'
+                     }
                   </div>
-                        <div className="border-l-4 border-green-500 p-4 mb-4 cursor-pointer hover:bg-green-50"
-                        onClick={()=>{
-                           navigate('/category?page=boxes')
-                        }}
+                     <div className="w-full p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <div className="flex items-center max-sm:w-full max-sm:mb-2 mt-2 mb-4">
+                           <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-green-900" />
+                           <span className="text-base text-gray-600 max-sm:text-sm">
+                              مدیریت مالی در یک نگاه
+                           </span>
+                        </div>
+                        
+                        <div
+                           className="border-l-4 border-green-500 p-4 mb-4 cursor-pointer hover:bg-green-50"
+                           onClick={() => {
+                              navigate('/category?page=boxes');
+                           }}
                         >
                            <div className="flex justify-between">
                               <div className="flex items-center">
@@ -68,10 +77,11 @@ const DashboardIndex = () => {
                            </div>
                         </div>
 
-                        <div className="border-l-4 border-yellow-500 p-4 mb-4 cursor-pointer hover:bg-yellow-50"
-                        onClick={()=>{
-                           navigate('/withdrawal')
-                        }}
+                        <div
+                           className="border-l-4 border-yellow-500 p-4 mb-4 cursor-pointer hover:bg-yellow-50"
+                           onClick={() => {
+                              navigate('/withdrawal');
+                           }}
                         >
                            <div className="flex justify-between">
                               <div className="flex items-center">
@@ -91,10 +101,11 @@ const DashboardIndex = () => {
                            </div>
                         </div>
 
-                        <div className="border-l-4 border-blue-500 p-4 mb-4 cursor-pointer hover:bg-blue-50"
-                        onClick={()=>{
-                           navigate('/deposit')
-                        }}
+                        <div
+                           className="border-l-4 border-blue-500 p-4 mb-4 cursor-pointer hover:bg-blue-50"
+                           onClick={() => {
+                              navigate('/deposit');
+                           }}
                         >
                            <div className="flex justify-between">
                               <div className="flex items-center">
@@ -121,7 +132,7 @@ const DashboardIndex = () => {
                         {topwithdrawal && topwithdrawal.length > 0 ? (
                            <>
                               <p className="m-2 text-base text-gray-600 flex">
-                              <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-green-900" />
+                                 <DebitCardIcon className="w-6 h-6 ml-2 stroke-1 text-green-900" />
                                  برای چه دسته بندی بیشتر هزینه کرده اید؟
                               </p>
                               <div className="w-full flex flex-wrap-reverse items-center justify-between">
@@ -213,7 +224,9 @@ const DashboardIndex = () => {
                                          <TableCell>{index + 1} </TableCell>
                                          <TableCell>
                                             {i.amount
-                                               ?`${NumberSeparator(i.amount)} تومان`
+                                               ? `${NumberSeparator(
+                                                    i.amount
+                                                 )} تومان`
                                                : '0 تومان'}
                                          </TableCell>
                                          <TableCell dir="ltr">
