@@ -22,7 +22,7 @@ const BoxesCategory = () => {
    return (
       <div className="flex flex-wrap w-full">
          {loading ? (
-            <Spinner size="lg" />
+            <Spinner size="lg" color='success'/>
          ) : (
             <>
                <AddNewComponent

@@ -10,7 +10,7 @@ const CategoryIndex = () => {
 
    return (
       <>
-         <Card className="px-4 py-6 my-6 overflow-visible bg-gradient-to-r from-green-50 to-[#ddece7] shadow-lg rounded-xl">
+         <Card className="px-4 py-6 my-6 overflow-visible bg-[#EFF9F0] shadow-lg rounded-xl">
             <CardHeader className=" text-gray-800">
                <div className="flex items-center max-sm:w-full max-sm:mb-2">
                   <CardExchangeIcon className="w-6 h-6 ml-2" />

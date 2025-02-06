@@ -31,9 +31,9 @@ const DashboardIndex = () => {
    } = useDashboard();
 
    return (
-      <Card className="px-4 py-6 my-6 overflow-visible bg-gradient-to-r from-green-50 to-[#ddece7] shadow-lg rounded-xl">
+      <Card className="px-4 py-6 my-6 overflow-visible  bg-[#EFF9F0] shadow-lg rounded-xl">
          {loading ? (
-            <Spinner size="lg" />
+            <Spinner size="lg"  color='success'/>
          ) : (
             <>
                <CardHeader className="text-asiatech-gray-800 flex items-center justify-between">

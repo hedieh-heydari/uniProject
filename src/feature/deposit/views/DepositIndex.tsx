@@ -46,9 +46,9 @@ const DepositIndex = () => {
    } = useDeposit();
 
    return (
-      <Card className="px-4 py-6 my-6 overflow-visible bg-gradient-to-r from-green-50 to-[#ddece7]">
+      <Card className="px-4 py-6 my-6 overflow-visible bg-[#EFF9F0]">
          {loading ? (
-            <Spinner size="lg" />
+            <Spinner size="lg" color='success' />
          ) : (
             <>
                <CardHeader className="flex max-sm:flex-wrap justify-between p-0 mb-6 text-gray-700">
@@ -101,7 +101,7 @@ const DepositIndex = () => {
                      </TableColumn>
                   </TableHeader>
                   <TableBody
-                     loadingContent={<Spinner />}
+                     loadingContent={<Spinner color='success' />}
                      isLoading={false}
                      emptyContent={<EmptyStateComponent />}
                   >
