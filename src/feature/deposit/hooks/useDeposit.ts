@@ -4,6 +4,9 @@ import { getBoxesController, getIncomeController } from '../../category/helper/c
 import { addDepositController, deleteDepositsController, editDepositsController, getDepositController } from '../helpers/controller';
 
 export const useDeposit = () => {
+   const [loading, setLoading] = useState<boolean>(true)
+   const [deleteDisableBtn, setDeleteDisableBtn] = useState<boolean>(false)
+   const [upsertDisableBtn, setUpsertDisableBtn] = useState<boolean>(false)
    const [openDeleteDepositModal, setOpenDeleteDpositModal] =
       useState<boolean>(false);
    const [openUpsertDepositModal, setOpenUpserDepositModal] =
@@ -24,7 +27,8 @@ export const useDeposit = () => {
          selectedDeposit,
          setSelectedDeposit,
          setOpenUpserDepositModal,
-         getDepositHandler
+         getDepositHandler,
+         setUpsertDisableBtn
       );
    };
    const editDepositHandler = () => {
@@ -32,7 +36,8 @@ export const useDeposit = () => {
          selectedDeposit,
          getDepositHandler,
          setOpenUpserDepositModal,
-         setSelectedDeposit
+         setSelectedDeposit, 
+         setUpsertDisableBtn
       );
    };
 
@@ -41,14 +46,15 @@ export const useDeposit = () => {
          selectedDeposit,
          getDepositHandler,
          setOpenDeleteDpositModal,
-         setSelectedDeposit
+         setSelectedDeposit,
+         setDeleteDisableBtn
       );
    };
 
    useEffect(() => {
       getDepositHandler();
-      getIncomeController(setIncomeSelect);
-      getBoxesController(setBoxes);
+      getIncomeController(setIncomeSelect, setLoading);
+      getBoxesController(setBoxes, setLoading);
    }, []);
 
    return {
@@ -64,7 +70,10 @@ export const useDeposit = () => {
       editDepositHandler,
       deleteDepositHandler,
       incomeSelect,
-      boxes
+      boxes,
+      loading,
+      deleteDisableBtn,
+      upsertDisableBtn
 
    };
 };

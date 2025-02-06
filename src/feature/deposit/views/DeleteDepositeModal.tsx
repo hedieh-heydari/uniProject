@@ -13,7 +13,8 @@ const DeleteDepositeModal: FC<IDeleteDepositModal> = ({
    open,
    setOpen,
    deleteHandler,
-   selectedData
+   selectedData,
+   disableBtn
 }) => {
    return (
       <Modal
@@ -36,6 +37,7 @@ const DeleteDepositeModal: FC<IDeleteDepositModal> = ({
             </ModalBody>
             <ModalFooter className="flex flex-wrap">
                <Button
+               disabled={disableBtn}
                   color="danger"
                   className="bg-red-600 max-sm:w-full"
                   onClick={() => {

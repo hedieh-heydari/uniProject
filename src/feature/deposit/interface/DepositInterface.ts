@@ -3,6 +3,7 @@ export interface IDeleteDepositModal {
    setOpen: Function;
    deleteHandler: Function;
    selectedData: IDeposit | undefined;
+   disableBtn:boolean
 }
 
 export interface IUpsertDepositModal {
@@ -14,6 +15,7 @@ export interface IUpsertDepositModal {
    addHandler: Function;
    IncomeSelect: any;
    boxesSelect: any;
+   disableBtn:boolean
 }
 
 export interface IDeposit {
