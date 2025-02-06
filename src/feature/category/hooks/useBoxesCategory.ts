@@ -8,6 +8,7 @@ import {
 
 export const useBoxesCategory = () => {
    const [openUpsertModal, setOpenUpsertModal] = useState<boolean>(false);
+   const [disableBtn , setDisableBtn] = useState<boolean>(false)
    const [boxesData, setBoxesData] = useState<IIncomeList[]>([
       {
          _id: '',
@@ -30,7 +31,8 @@ export const useBoxesCategory = () => {
          selectedBox,
          setSelectedBox,
          setOpenUpsertModal,
-         getBoxesHandler
+         getBoxesHandler, 
+         setDisableBtn
       );
    };
    const editBoxesHandler = () => {
@@ -38,7 +40,8 @@ export const useBoxesCategory = () => {
          selectedBox,
          getBoxesHandler,
          setOpenUpsertModal,
-         setSelectedBox
+         setSelectedBox, 
+         setDisableBtn
       );
    };
 
@@ -53,6 +56,7 @@ export const useBoxesCategory = () => {
       selectedBox,
       setSelectedBox,
       addBoxesHandler,
-      editBoxesHandler
+      editBoxesHandler,
+      disableBtn
    };
 };

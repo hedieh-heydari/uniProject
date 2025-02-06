@@ -5,6 +5,7 @@ export interface IUpsertBoxesModal {
    setData:Function,
    addHandler:Function,
    editHandler:Function,
+   disableBtn:boolean
 }
 
 export interface IUpsertCategoryModal {

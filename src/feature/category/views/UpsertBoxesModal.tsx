@@ -10,7 +10,15 @@ import {
 import { IUpsertBoxesModal } from '../interfaces/CategoryInterfaces';
 import { NumericFormat } from 'react-number-format';
 
-const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen,addHandler,editHandler,selectedData,setData }) => {
+const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({
+   open,
+   setOpen,
+   addHandler,
+   editHandler,
+   selectedData,
+   setData,
+   disableBtn
+}) => {
    return (
       <Modal
          backdrop="opaque"
@@ -30,15 +38,16 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen,addHandler,edit
                   <div className="w-full sm:w-1/2 sm:pl-4">
                      <p className="text-gray-700 mb-2 font-bold">عنوان</p>
                      <input
-                      value={
-                        selectedData && selectedData.title
-                           ? selectedData.title
-                           : ''
-                     }
-                     onChange={(e: any) => {
-                        setData({ ...selectedData, title: e.target.value });
-                     }}
-                     className="w-full h-10 border rounded-medium focus:outline-none px-3" />
+                        value={
+                           selectedData && selectedData.title
+                              ? selectedData.title
+                              : ''
+                        }
+                        onChange={(e: any) => {
+                           setData({ ...selectedData, title: e.target.value });
+                        }}
+                        className="w-full h-10 border rounded-medium focus:outline-none px-3"
+                     />
                   </div>
                   <div className="w-full sm:w-1/2 max-sm:mt-4 relative">
                      <p className="text-gray-700 mb-2 font-bold">لوگو</p>
@@ -65,7 +74,7 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen,addHandler,edit
                         dir="ltr"
                         className="w-full h-10 border rounded-medium focus:outline-none px-3"
                         thousandSeparator={true}
-                        onValueChange={(e:any) => {
+                        onValueChange={(e: any) => {
                            setData({ ...selectedData, initialAmount: e.value });
                         }}
                         value={selectedData?.initialAmount}
@@ -76,7 +85,8 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({ open, setOpen,addHandler,edit
             <ModalFooter>
                <div className="w-full justify-end flex flex-wrap">
                   <Button
-                      onClick={() => {
+                  isDisabled={disableBtn}
+                     onClick={() => {
                         selectedData?._id ? editHandler() : addHandler();
                      }}
                      type="submit"

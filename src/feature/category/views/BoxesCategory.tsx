@@ -14,7 +14,8 @@ const BoxesCategory = () => {
       selectedBox,
       setSelectedBox,
       addBoxesHandler,
-      editBoxesHandler
+      editBoxesHandler, 
+      disableBtn
    } = useBoxesCategory();
    return (
       <div className="flex flex-wrap w-full">
@@ -54,6 +55,7 @@ const BoxesCategory = () => {
             setData={setSelectedBox}
             addHandler={addBoxesHandler}
             editHandler={editBoxesHandler}
+            disableBtn={disableBtn}
          />
       </div>
    );

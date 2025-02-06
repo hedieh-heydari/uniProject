@@ -136,12 +136,14 @@ export const addBoxController = (
    addBoxData: any,
    setSelectedBox: Function,
    setOpenUpsertModal: Function,
-   getBoxesHandler: Function
+   getBoxesHandler: Function, 
+   setDisableBtn:Function
 ) => {
    const formData = new FormData();
    formData.append('logo', addBoxData.logo[0]);
    formData.append('title', addBoxData.title);
    formData.append('initialAmount', addBoxData.initialAmount);
+   setDisableBtn(true)
    addBoxesApi(formData)
       .then(() => {
          toast.success('با موفقیت افزوده شد.',{ className: 'toast-custom' });
@@ -153,20 +155,23 @@ export const addBoxController = (
          console.log(err);
          const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
          toast.error(errorMessage, { className: 'toast-custom' });
-      });
+      }).finally(()=>{
+         setDisableBtn(true)
+      })
 };
 
 export const editBoxesController = (
    editBoxesData: any,
    getBoxesHandler: Function,
    setOpenUpsertModal: Function,
-   setSelectedBox: Function
+   setSelectedBox: Function, 
+   setDisableBtn:Function
 ) => {
    const formData = new FormData();
    formData.append('logo', editBoxesData.logo[0]);
    formData.append('title', editBoxesData.title);
    formData.append('initialAmount', editBoxesData.initialAmount);
-
+   setDisableBtn(true)
    editBoxesApi(editBoxesData._id, formData)
       .then(() => {
          toast.success('با موفقیت ویرایش شد.',{ className: 'toast-custom' });
@@ -178,5 +183,7 @@ export const editBoxesController = (
          console.log(err);
          const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
          toast.error(errorMessage, { className: 'toast-custom' });
-      });
+      }).finally(()=>{
+         setDisableBtn(false)
+      })
 };
