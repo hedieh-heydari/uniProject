@@ -4,6 +4,7 @@ import { IProfileInterface } from '../interface/profileInterface';
 
 export const useProfile = () => {
    const uId = localStorage.getItem('userId');
+   const [loading, setLoading] = useState<boolean>(false)
    const [profileData, setProfileData] = useState<IProfileInterface>({
       birthDate: '',
       completedProfile: false,
@@ -19,7 +20,7 @@ export const useProfile = () => {
    });
 
    const getProfileHandler = () => {
-      uId && getProfileController(uId, setProfileData);
+      uId && getProfileController(uId, setProfileData, setLoading);
    };
    const updateProfileHandler =() =>{
     updateProfileController(profileData, getProfileHandler)
@@ -30,6 +31,7 @@ export const useProfile = () => {
    }, [uId]);
 
    return {
+      loading,
       profileData,
       setProfileData,
       updateProfileHandler

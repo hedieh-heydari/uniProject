@@ -4,14 +4,18 @@ import { GetProfileApi, udateProfileApi } from './api';
 
 export const getProfileController = (
    userId: string,
-   setProfileData: Function
+   setProfileData: Function,
+   setLoading:Function
 ) => {
+   setLoading(true)
    GetProfileApi(userId)
       .then((res: any) => {
          setProfileData(res.data.user);
+         setLoading(false)
       })
       .catch((err: any) => {
          console.log(err);
+         setLoading(false)
          const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
          toast.error(errorMessage, { className: 'toast-custom' });
       });
