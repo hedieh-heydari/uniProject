@@ -13,7 +13,8 @@ const DeleteWithdrawalModal: FC<IDeleteWithdrawalModal> = ({
    open,
    setOpen,
    deleteHandler,
-   selectedData
+   selectedData, 
+   disableBtn
 }) => {
    return (
       <Modal
@@ -37,6 +38,7 @@ const DeleteWithdrawalModal: FC<IDeleteWithdrawalModal> = ({
             <ModalFooter className="flex flex-wrap">
                <Button
                   color="danger"
+                  disabled={disableBtn}
                   className="bg-red-600 max-sm:w-full"
                   onClick={() => {
                      deleteHandler(selectedData?._id);

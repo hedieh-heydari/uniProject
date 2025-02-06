@@ -12,6 +12,9 @@ import {
 } from '../../category/helper/controller';
 
 export const useWithdrawal = () => {
+   const [loading, setLoading] = useState<boolean>(true)
+   const [deleteDisableBtn, setDeleteDisableBtn] = useState<boolean>(false)
+   const [upsertDisableBtn, setUpsertDisableBtn] = useState<boolean>(false)
    const [openDeleteWidthrawalModal, setOpenDeleteWithdrawalModal] =
       useState<boolean>(false);
    const [openUpsertWidthrawalModal, setOpenUpsertWithdrawalModal] =
@@ -23,7 +26,7 @@ export const useWithdrawal = () => {
    const [selectedWithdraw, setSelectedWithdraw] = useState<IWithdrawal>();
 
    const getWithdrawalHandler = () => {
-      getWithdrawalController(setwithdrwalaData);
+      getWithdrawalController(setwithdrwalaData, setLoading);
    };
 
    const addWithdrawalHandler = () => {
@@ -31,7 +34,8 @@ export const useWithdrawal = () => {
          selectedWithdraw,
          setSelectedWithdraw,
          setOpenUpsertWithdrawalModal,
-         getWithdrawalHandler
+         getWithdrawalHandler,
+         setUpsertDisableBtn
       );
    };
    const editWithdrawalHandler = () => {
@@ -39,7 +43,8 @@ export const useWithdrawal = () => {
          selectedWithdraw,
          getWithdrawalHandler,
          setOpenUpsertWithdrawalModal,
-         setSelectedWithdraw
+         setSelectedWithdraw,
+         setUpsertDisableBtn
       );
    };
 
@@ -48,14 +53,15 @@ export const useWithdrawal = () => {
          selectedWithdraw,
          getWithdrawalHandler,
          setOpenDeleteWithdrawalModal,
-         setSelectedWithdraw
+         setSelectedWithdraw, 
+         setDeleteDisableBtn
       );
    };
 
    useEffect(() => {
       getWithdrawalHandler();
-      getOutgoController(setOutgoSelect);
-      getBoxesController(setBoxes);
+      getOutgoController(setOutgoSelect, setLoading);
+      getBoxesController(setBoxes, setLoading);
    }, []);
 
    return {
@@ -70,6 +76,9 @@ export const useWithdrawal = () => {
       deleteWithdrawHandler,
       withdrwalaData,
       outgoSelect,
-      boxes
+      boxes, 
+      loading,
+      deleteDisableBtn,
+      upsertDisableBtn
    };
 };

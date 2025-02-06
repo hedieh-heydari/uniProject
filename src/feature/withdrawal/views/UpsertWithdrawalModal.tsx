@@ -24,7 +24,8 @@ const UpsertWithdrawalModal: FC<IUpsertWithdrawalModal> = ({
    selectedData,
    setSelectedData,
    outgoSelect,
-   boxesSelect
+   boxesSelect,
+   disableBtn
 }) => {
    return (
       <Modal
@@ -156,6 +157,7 @@ const UpsertWithdrawalModal: FC<IUpsertWithdrawalModal> = ({
             <ModalFooter>
                <div className="w-full justify-end flex flex-wrap">
                   <Button
+                  disabled={disableBtn}
                      onClick={() => {
                         selectedData?._id ? editHandler() : addHandler();
                      }}

@@ -3,6 +3,7 @@ export interface IDeleteWithdrawalModal {
    setOpen: Function;
    deleteHandler: Function;
    selectedData: IWithdrawal | undefined;
+   disableBtn :boolean
 }
 
 export interface IUpsertWithdrawalModal {
@@ -14,6 +15,7 @@ export interface IUpsertWithdrawalModal {
    addHandler: Function;
    outgoSelect: any;
    boxesSelect: any;
+   disableBtn: boolean
 }
 
 export interface IWithdrawal {
