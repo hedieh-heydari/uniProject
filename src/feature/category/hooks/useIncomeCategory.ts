@@ -8,6 +8,7 @@ import {
 
 export const useIncomeCategory = () => {
    const [openUpsertModal, setOpenUpsertModal] = useState<boolean>(false);
+   const [disableBtn, setDisableBtn] = useState<boolean>(false)
    const [incomeData, setIncomeData] = useState<IIncomeList[]>([
       {
          _id: '',
@@ -30,11 +31,14 @@ export const useIncomeCategory = () => {
          selectedIncome,
          setSelectedIncome,
          setOpenUpsertModal,
-         getIncomeHandler
+         getIncomeHandler, 
+         setDisableBtn
       );
    };
    const editIncomeHandler = () => {
-      editIncomeController(selectedIncome, getIncomeHandler,setOpenUpsertModal,setSelectedIncome);
+      editIncomeController(selectedIncome, getIncomeHandler,setOpenUpsertModal,setSelectedIncome, 
+         setDisableBtn
+      );
    };
 
    useEffect(() => {
@@ -49,6 +53,7 @@ export const useIncomeCategory = () => {
       selectedIncome,
       setSelectedIncome,
       addIncomeHandler, 
-      editIncomeHandler
+      editIncomeHandler, 
+      disableBtn
    };
 };

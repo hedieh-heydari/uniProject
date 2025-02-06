@@ -25,20 +25,24 @@ export const addIncomeController = (
    addIncomeData: any,
    setSelectedIncome: Function,
    setOpenUpsertModal: Function,
-   getIncomeHandler: Function
+   getIncomeHandler: Function, 
+   setDisableBtn:Function
 ) => {
    const formData = new FormData();
    formData.append('logo', addIncomeData.logo[0]);
    formData.append('title', addIncomeData.title);
+   setDisableBtn(true)
    addIncomeApi(formData)
       .then(() => {
          toast.success('با موفقیت افزوده شد.',{ className: 'toast-custom' });
          setSelectedIncome();
          setOpenUpsertModal(false);
          getIncomeHandler();
+         setDisableBtn(false)
       })
       .catch((err: any) => {
          console.log(err);
+         setDisableBtn(false)
          const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
          toast.error(errorMessage, { className: 'toast-custom' });
       });
@@ -47,22 +51,26 @@ export const editIncomeController = (
    editIncomeData: any,
    getIncomeHandler: Function,
    setOpenUpsertModal: Function,
-   setSelectedIncome: Function
+   setSelectedIncome: Function, 
+   setDisableBtn:Function
 ) => {
    const formData = new FormData();
    formData.append('logo', editIncomeData.logo[0]);
    formData.append('title', editIncomeData.title);
+   setDisableBtn(true)
    editIncomeApi(editIncomeData._id, formData)
       .then(() => {
          toast.success('با موفقیت ویرایش شد.',{ className: 'toast-custom' });
          getIncomeHandler();
          setOpenUpsertModal(false);
          setSelectedIncome();
+         setDisableBtn(true)
       })
       .catch((err: any) => {
          console.log(err);
          const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
          toast.error(errorMessage, { className: 'toast-custom' });
+         setDisableBtn
       });
 };
 
@@ -80,20 +88,24 @@ export const addOutgoController = (
    addOutgoData: any,
    setSelectedOutgo: Function,
    setOpenUpsertModal: Function,
-   getOutgoHandler: Function
+   getOutgoHandler: Function, 
+   setDisableBtn:Function
 ) => {
    const formData = new FormData();
    formData.append('logo', addOutgoData.logo[0]);
    formData.append('title', addOutgoData.title);
+   setDisableBtn(true)
    addOutgoApi(formData)
       .then(() => {
          toast.success('با موفقیت افزوده شد.',{ className: 'toast-custom' });
          setSelectedOutgo();
          setOpenUpsertModal(false);
          getOutgoHandler();
+         setDisableBtn(false)
       })
       .catch((err: any) => {
          console.log(err);
+         setDisableBtn(false)
          const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
          toast.error(errorMessage, { className: 'toast-custom' });
       });
@@ -103,20 +115,24 @@ export const editOutgoController = (
    editOutgoData: any,
    getOutgoHandler: Function,
    setOpenUpsertModal: Function,
-   setSelectedOutgo: Function
+   setSelectedOutgo: Function, 
+   setDisableBtn:Function
 ) => {
    const formData = new FormData();
    formData.append('logo', editOutgoData.logo[0]);
    formData.append('title', editOutgoData.title);
+   setDisableBtn(true)
    editOutgoApi(editOutgoData._id, formData)
       .then(() => {
          toast.success('با موفقیت ویرایش شد.',{ className: 'toast-custom' });
          getOutgoHandler();
          setOpenUpsertModal(false);
          setSelectedOutgo();
+         setDisableBtn(false)
       })
       .catch((err: any) => {
          console.log(err);
+         setDisableBtn(false)
          const errorMessage = err?.response?.data?.message || 'خطایی در دریافت اطلاعات رخ داده است.';
          toast.error(errorMessage, { className: 'toast-custom' });
       });

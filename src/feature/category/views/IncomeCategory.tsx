@@ -13,7 +13,8 @@ const IncomeCategory = () => {
       selectedIncome,
       setSelectedIncome,
       addIncomeHandler,
-      editIncomeHandler
+      editIncomeHandler,
+      disableBtn
    } = useIncomeCategory();
    return (
       <div className="flex flex-wrap w-full">
@@ -53,6 +54,7 @@ const IncomeCategory = () => {
             setData={setSelectedIncome}
             addHandler={addIncomeHandler}
             editHandler={editIncomeHandler}
+            disableBtn={disableBtn}
          />
       </div>
    );

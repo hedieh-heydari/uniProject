@@ -15,7 +15,8 @@ export interface IUpsertCategoryModal {
    selectedData:IIncomeList | undefined;
    setData:Function
    addHandler:Function,
-   editHandler:Function
+   editHandler:Function, 
+   disableBtn: boolean
 }
 export interface IIncomeList {
    _id: string;

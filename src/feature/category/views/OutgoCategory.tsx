@@ -13,7 +13,8 @@ const OutgoCategory = () => {
       editOutgoHandler,
       outgoData,
       selectedOutgo,
-      setSelectedOutgo
+      setSelectedOutgo, 
+      disableBtn
    } = useOutgoCategory();
    return (
       <div className="flex flex-wrap w-full">
@@ -53,6 +54,7 @@ const OutgoCategory = () => {
             setData={setSelectedOutgo}
             addHandler={addOutgoHandler}
             editHandler={editOutgoHandler}
+            disableBtn={disableBtn}
          />
       </div>
    );
