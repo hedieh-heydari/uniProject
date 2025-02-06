@@ -99,6 +99,7 @@ const UpsertBoxesModal: FC<IUpsertBoxesModal> = ({
                      className="text-white bg-gray-400 max-sm:w-full sm:mr-2 max-sm:mt-3"
                      onClick={() => {
                         setOpen(false);
+                        setData()
                      }}
                   >
                      بازگشت
